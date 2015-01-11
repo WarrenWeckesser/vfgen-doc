@@ -1,0 +1,63 @@
+<h2>DDE-BIFTOOL</h2>
+<p>
+<a href="http://arachne.cs.kuleuven.ac.be/~twr/research/software/delay/ddebiftool.shtml">
+DDE-BIFTOOL</a> is a <a href="http://www.mathworks.com/">MATLAB</a>
+package for bifurcation analysis of delay differental equations.
+</p>
+<h3>The VFGEN DDE-BIFTOOL Command</h3>
+<p>
+A set of MATLAB files configured for the DDE-BIFTOOL package
+are created by the command
+<br />
+<div class="mypre">$ vfgen ddebiftool vector_field_file.vf</div>
+</p>
+<p>
+The vector field must have at least one <b>delay</b> expression.
+</p>
+<p>
+<b>Note</b>: Currently VFGEN only generates DDE-BIFTOOL files for systems
+with <i>constant</i> delays.
+<h4>Options</h4>
+<table class="options">
+<tr>
+<td>
+<b>path</b>
+</td>
+<td>
+The <b>path</b> option allows the user to specify a directory that
+is added to the MATLAB search path in the sys_init.m file.
+For example, if the VFGEN command
+<div class="mypre">$ vfgen ddebiftool:path="/home/wweckesser/ddebiftool" mg.vf</div>
+is given, the line
+<pre>    path(path,'/home/wweckesser/ddebiftool');</pre>
+is added to the sys_init.m file.
+<br />
+<i>Default</i>: If the <b>path</b> option is not used, the following comments are
+added to sys_init.m:
+<pre>
+    # Add the DDE-BIFTOOL path here, if necessary.
+    # path(path,'');
+</pre>
+</td>
+</tr>
+</table>
+<h4>Example</h4>
+<p>
+The file <a href="example_auto/mg.vf">mg.vf</a> defines the Mackey-Glass equation.
+The command
+<div class="mypre">vfgen ddebiftool:path=/home/wweckesser/ddebiftool mg.vf</div>
+creates the files
+<ul>
+<li><a href="example_ddebiftool/sys_init.m">sys_init.m</a></li>
+<li><a href="example_ddebiftool/sys_rhs.m">sys_rhs.m</a></li>
+<li><a href="example_ddebiftool/sys_deri.m">sys_deri.m</a></li>
+<li><a href="example_ddebiftool/sys_tau.m">sys_tau.m</a></li>
+</ul>
+The script <a href="example_ddebiftool/mg_script.m">mg_script.m</a> results in the following
+plot:
+<br />
+<br />
+<center>
+<img class="exampleplot" border="1" src="example_ddebiftool/mg_bifdiag.png">
+</center>
+</p>

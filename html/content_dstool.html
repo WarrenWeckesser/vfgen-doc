@@ -1,0 +1,36 @@
+<h2>DSTool</h2>
+<p>
+From the <a href="http://www.dynamicalsystems.org/sw/sw/detail?item=11">DSWeb description of DSTool</a>:
+"DsTool is a toolkit for exploring dynamical systems. It is an efficient research tool that integrates a friendly graphical user interface, data management capabilities, a rich set of numerical algorithms together with the flexibility to add more algorithms and communicate data with other programs."
+</p>
+<h3 class="title">The VFGEN DSTool Command</h3>
+<p>
+A C file that can be used to define a vector field for DSTool
+is created by the command
+<div class="mypre"> $ vfgen dstool vector_field_file.vf</div>
+<p>
+The name of the C file will be <b>[name]_def.c</b>, where
+<b>[name]</b> is the name of the vector field given in the vector field file. 
+The C file will define the functions <b>[name]</b>, <b>[name]_jac</b>,
+<b>[name]_dfdt</b>, <b>[name]_dfdp</b>,
+<b>[name]_aux</b>, and <b>[name]_init</b>.
+<p>
+Note: The current vector field format does not contain as much information
+as can be used by DSTool.  For example, it is not possible to specify
+ranges of the variables, parameters or functions (to be used, for example,
+as the limits of plots).
+To use these features of DSTool, you will have to edit the file created
+by VFGEN.
+<p>
+VFGEN only creates the "_def.c" file.  You will still have to 
+configure DSTool to install your vector field.
+Consult the DSTool User Manual for instructions.
+</p>
+<h4>Example</h4>
+<p>
+Here is a sample vector field file: <a href="example_vf/pendulum.vf">pendulum.vf</a>.
+<br>
+The file created by
+<div class="mypre">$ vfgen dstool pendulum.vf</div>
+<br>
+is <a href="example_dstool/pendulum_def.c">pendulum_def.c</a>.

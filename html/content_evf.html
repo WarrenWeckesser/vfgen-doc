@@ -1,0 +1,66 @@
+<h2>EVF</h2>
+<p>
+The EVF command creates a new vector field in which an existing vector field
+is extended with its variational equations.
+</p>
+<p>
+Often it is useful to solve the <i>variational equations</i> of a vector field.
+One simple way to do this is to create a system consisting of the original vector
+field <b>x</b>'=<b>F</b>(<b>x</b>)
+and the variational equation d<b>x</b>' = D<b>F</b>(<b>x</b>)d<b>x</b>, where
+D<b>F</b>(<b>x</b>) is the Jacobian at <b>x</b>.
+(For example, this is the system created in the file with the suffix "_evf.m"
+in VFGEN's MATLAB command.)  However, you will not have an explicit Jacobian
+of the <i>extended</i> system, unless you write the function
+yourself. 
+</p>
+<p>
+An alternative is to use the EVF command of VFGEN.  The output of this
+command is a new vector field specification 
+in which the original vector field has been extended with
+the variational equations.
+The new vector field is a 2N dimensional
+system that consists of the original vector field plus its variational
+equation.  The symbols used for the extended variables are the same as
+the original variables with the letter "d" prepended to them. For example,
+if the original system uses the variables x and y, the new system
+will use x, y, dx, and dy.  After running your vector field file through
+VFGEN to create the extended vector field, you can use VFGEN to output the
+extended system in the format of your choice, and you will automatically
+have the Jacobian(s) of the extended system.
+</p>
+
+<h4>Options</h4>
+<table class="options">
+<tr>
+<td>
+<b>par</b> &nbsp;
+</td>
+<td>
+If the option <b>par=</b><i>p</i> is given, where <i>p</i> is a <b>Parameter</b>,
+the vector field is extended with the equations
+<br>
+<center>
+   d<b>x</b>' = D<b>F</b>(<b>x</b>) d<b>x</b> + D<sub>p</sub><b>F</b>(<b>x</b>)
+</center>
+<br>
+<i>Default</i>: If the <b>par</b> option is not specified, the Jacobian with
+respect to a parameter is not added to D<b>F</b>(<b>x</b>)d<b>x</b>
+in the extended vector field.
+</td>
+</tr>
+</table>
+
+<h4>Example</h4>
+<p>
+Here is an example of using the EVF command with
+the input vector field file
+<a href="example_vf/pendulum.vf">pendulum.vf</a>.
+<div class="mypre">$ vfgen evf:par=b pendulum.vf > pendulum_evf.vf</div>
+</p>
+<p>
+Note that, unlike most VFGEN commands, the ouput is sent to the console
+rather than a file.
+In this example, we have redirected the output to the file
+<a href="example_evf/pendulum_evf.vf">pendulum_evf.vf</a>.
+</p>

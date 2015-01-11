@@ -1,0 +1,103 @@
+<h2>PyDSTool</h2>
+From the
+<a href="http://www2.gsu.edu/~matrhc/PyDSTool.htm">PyDSTool</a>
+wiki: "PyDSTool is an integrated simulation, modeling and analysis package
+for dynamical systems, written in Python."
+<h3>The VFGEN PyDSTool Command</h3>
+<p>
+A Python file that can be used with PyDSTool 
+is created by the command
+<div class="mypre">$ vfgen pydstool vector_field_file.vf</div>
+</p>
+<p>
+This command creates the file <b>[name].py</b>,
+where [name] is the name of the vector field given in the vector field file. 
+The file defines the function <b>args()</b>, which returns
+an "args" object that can be used to create a PyDSTool Generator.
+
+</p>
+<h4>Options</h4>
+<table class="options">
+<tr>
+<td>
+<b>demo</b>
+</td>
+<td>
+If the option <b>demo=yes</b> is given,
+the file <b>[name]_dst.py</b>
+is also created.  This program provides a sample Python script
+that uses a Generator to plot a solution to the differential
+equations.
+The initial conditions and parameter values for the solution
+are the default values defined in the vector
+field file.
+<br />
+<i>Default</i>: <b>demo=no</b>
+</td>
+</tr>
+</table>
+
+<h4>Example 1</h4>
+<p>
+Here is a sample vector field file: <a href="example_vf/vanderpol.vf">vanderpol.vf</a>.
+<br>
+The files created by
+<div class="mypre">$ vfgen pydstool:demo=yes vanderpol.vf</div>
+are
+<ul>
+<li><a href="example_pydstool/vanderpol.py">vanderpol.py</a></li>
+<li><a href="example_pydstool/vanderpol_dst.py">vanderpol_dst.py</a></li>
+</ul>
+</p>
+<p>
+The command
+<div class="mypre">$ python vanderpol_dst.py</div>
+created the following plot.
+<center>
+<img class="exampleplot" src="example_pydstool/vanderpol_plot.png" alt="Graphs of x(t) and y(t)"/>
+</center>
+</p>
+<h4>Example 2</h4>
+<p>
+In this example, we use the
+<a href="http://www.cam.cornell.edu/~rclewley/cgi-bin/moin.cgi/PyCont">PyCont</a>
+subpackage of PyDSTool to compute a two parameter bifurcation diagram
+for the Morris-Lecar equations.
+</p>
+<p>
+A vector field file for the Morris-Lecar equation is
+<a href="example_vf/MorrisLecar.vf">MorrisLecar.vf</a>.
+We generate the file
+<a href="example_pydstool/MorrisLecar.py">MorrisLecar.py</a> with the command
+<div class="mypre">$ vfgen pydstool MorrisLecar.vf</div>
+This file is used in the Python script
+<a href="example_pydstool/MorrisLecar_cont.py">MorrisLecar_cont.py</a>.
+Here is a transcript of running this script:
+<div class="mypre">
+$ python MorrisLecar_cont.py <br/>
+Setting up for one parameter continuation of an equilibrium point. <br/>
+Computing the curve. <br/>
+LP Point found  <br/>
+LP Point found  <br/>
+H Point found  <br/>
+Setting up for two parameter continuation of the Hopf point.  <br/>
+Computing the curve. <br/>
+...forward <br/>
+GH Point found  <br/>
+GH Point found  <br/>
+...backward <br/>
+BT Point found  <br/>
+Setting up for two parameter continuation of the first limit point. <br/>
+Computing the curve. <br/>
+...forward <br/>
+...backward <br/>
+CP Point found  <br/>
+BT Point found  <br/>
+Generating the plot in MorrisLecar_cont.png. <br/>
+$  <br/>
+</div>
+The following plot shows the result:
+<center>
+<img class="exampleplot" src="example_pydstool/MorrisLecar_cont.png">
+</center>
+</p>

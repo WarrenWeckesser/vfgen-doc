@@ -1,0 +1,117 @@
+<h2>Octave</h2>
+<p>
+From the <a href="http://www.gnu.org/software/octave">Octave</a> web page:
+"GNU Octave is a high-level language, primarily intended for numerical computations.
+It provides a convenient command line interface for solving linear and
+nonlinear problems numerically, and for performing other numerical experiments
+using a language that is mostly compatible with Matlab."
+</p>
+<h3>The VFGEN Octave Command</h3>
+<p>
+An Octave file is created by the command
+<br>
+<div class="mypre">$ vfgen octave vector_field_file.vf</div>
+</p>
+<p>
+This command creates the file <b>[name].m</b>, where [name] is the name
+given in the vector field file.
+The following table shows the Octave functions created by VFGEN
+octave command. N is the dimension of the system
+specified in the vector field file, t is time (a scalar),
+x is the N dimensional state vector, and p
+is the parameter vector.
+</p>
+<table class="options">
+<tr>
+<td width="30%"><i>Octave Function</i></td>
+<td><i>Description</i></td>
+</tr>
+<tr>
+<td>vf = [name]_vf(x,t)</td>
+<td>The vector field function. This returns an Nx1 column vector.</td>
+<tr>
+<td>jac = [name]_jac(x,t)</td>
+<td>The Jacobian function. This returns an NxN matrix.</td>
+</tr>
+<tr>
+<td>r = [name]_[userfunc](x,t,p)</td>
+<td>Each user function specified in the vector field file
+results in its own Octave function.
+The return value is a scalar.
+(Note that these function take the parameters as the vector
+argument <b>p</b>. They do not use the global variable
+[name]_parameters.)
+<br>
+These functions are only created if the option
+<b>func=yes</b> is given in the command line.
+</td>
+</tr>
+</table>
+<p>
+The <b>lsode</b> function does not provide a method for passing
+parameters to the vector field and Jacobian functions.
+To allow for parameters to be available to these functions, the
+VFGEN code uses a global variable.  The name of the variable is
+<b>[name]_parameters</b>.  It is a vector that holds the parameters
+in the order in which they were defined in the vector field file.
+</p>
+<p>
+Before using the <b>lsode</b> function, your script must assign
+the parameter values to this global vector.  For example, if the vector
+field named <b>mysystem</b> has the parameters <b>a</b>, <b>b</b>, and <b>epsilon</b>
+(defined in that order), your script should have code like this
+<pre>global mysystem_parameters;
+mysystem_parameters(1) = a;
+mysystem_parameters(2) = b;
+mysystem_parameters(3) = epsilon;
+</pre>
+before using the functions defined in Octave file created by VFGEN.
+</p>
+<h4>Options</h4>
+<table class="options">
+<tr>
+<td><b>func</b></td>
+<td>
+If the option <b>func=yes</b> is given, an Octave function will be created
+for each user-defined function.
+<br>
+<i>Default</i>: <b>func=no</b>
+</td>
+</tr>
+<tr>
+<td><b>demo</b></td>
+<td>
+If the option <b>demo=yes</b> is given, a second file is created called
+<b>[name]_demo.m</b>. It will call the lsode function and plot the solution.
+It uses the default initial conditions and parameters values defined in
+the vector field file.
+Run the script in Octave with the command
+<div class="mypre">
+octave:1&gt; [name]_demo
+</div>
+<br>
+<i>Default</i>: <b>demo=no</b>
+</td>
+</tr>
+</table>
+<h4>Example</h4>
+Here is a sample vector field file: <a href="example_vf/vanderpol.vf">vanderpol.vf</a>.
+<br>
+The files created by
+<div class="mypre">$ vfgen octave:func=yes,demo=yes vanderpol.vf</div>
+<br>
+are
+<ul>
+<li><a href="example_octave/vanderpol.m">vanderpol.m</a>
+<li><a href="example_octave/vanderpol_demo.m">vanderpol_demo.m</a>
+</ul>
+To run the demonstration program, enter the command
+<div class="mypre">octave:1> vanderpol_demo</div>
+in Octave.
+The demo creates this plot:
+</p>
+<p>
+<center>
+<img class="exampleplot" src="example_octave/vanderpol_plot.svg">
+</center>
+</p>
