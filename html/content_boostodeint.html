@@ -1,0 +1,102 @@
+<h2>Boost Odeint</h2>
+<p>
+<a href="https://www.boost.org/doc/libs/1_70_0/libs/numeric/odeint/doc/html/index.html">Boost odeint</a>
+is a C++ library for solving ordinary differential equations.
+</p>
+<h3>The VFGEN boostodeint Command</h3>
+<p>
+C++ files that can be used with Boost odeint
+are created by the command
+<div class="mypre">$ vfgen boostodeint vector_field_file.vf</div>
+</p>
+<p>
+The files created are <b>[name]_vf.cpp</b>
+and <b>[name]_vf.h</b>.
+</p>
+<h4>Options</h4>
+<table class="options">
+<tr>
+<td>
+<b>demo</b>
+</td>
+<td>
+If the option <b>demo=yes</b> is given,
+the file <b>[name]_demo.cpp</b> will contain the main routine for
+a command-line ODE solver for the vector field.
+The demonstration program is very simple.  It generates a solution
+for 0 &le; t &le; 10, and prints the solution every 0.01 time units
+in that interval.
+<br />
+<i>Default</i>: <b>demo=no</b>
+</td>
+</tr>
+<tr>
+<td>
+<b>system</b>
+</td>
+<td>
+The type of system to be integrated.  Options are <b>default</b>
+and <b>implicit</b>.  When <b>system=implicit</b>, the generated code
+includes an implementation of the Jacobian of the vector field.
+<br />
+<i>Default</i>: <b>system=default</b>
+</td>
+</tr>
+</table>
+<h4>Example</h4>
+<p>
+(This example uses a terminal in Linux or Mac OSX.  Adjustments will
+likely be needed to run this example in a Microsoft Windows terminal.)
+</p>
+
+Here is a sample vector field file: <a href="example_vf/pendulum.vf">pendulum.vf</a>.
+<br />set encoding utf8
+
+The files created by
+<div class="mypre">$ vfgen boostodeint:system=implicit,demo=yes pendulum.vf</div>
+<br />
+are
+<ul>
+<li><a href="example_boostodeint/pendulum_vf.cpp">pendulum_vf.cpp</a></li>
+<li><a href="example_boostodeint/pendulum_vf.h">pendulum_vf.h</a></li>
+<li><a href="example_boostodeint/pendulum_demo.cpp">pendulum_demo.cpp</a>,</li>
+</ul>
+<p>
+The demonstration program can be compiled with the commands
+<div class="mypre">
+$ g++ -c pendulum_vf.cpp  <br />
+$ g++ -c pendulum_demo.cpp  <br />
+$ g++ pendulum_demo.o pendulum_vf.o -o pendulum_demo  <br />
+</div>
+The following command runs the demonstration program
+and redirects the output to the file <b>pendulum.out</b>.
+<div class="mypre">
+$ ./pendulum_demo > pendulum.out
+</div>
+</p>
+<p>
+Here is a plot of the data:
+<center>
+<img class="exampleplot" src="example_boostodeint/pendulum.png" alt="Graphs of theta, v, and energy" />
+</center>
+</p>
+<p>
+The plot was generated with <b>gnuplot</b>, using the command
+<div class="mypre">
+$ gnuplot &lt; plot_pendulum.gnuplot
+</div>
+where <a href="example_boostodeint/plot_pendulum.gnuplot">plot_pendulum.gnuplot</a>
+is a gnuplot script containing the following commands:
+<div class="mypre">
+reset <br />
+set encoding utf8 <br />
+set colorsequence podo <br />
+set terminal pngcairo size 360,240 enhanced font "Verdana,10" <br />
+set output "pendulum.png" <br />
+set title "Pendulum" <br />
+set xlabel "t" <br />
+set grid <br />
+plot "pendulum.out" using 1:2 title "&theta;" with lines linestyle 1, \ <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pendulum.out" using 1:3 title "v" with lines linestyle 2 dashtype (12,6) <br />
+</div>
+</p>

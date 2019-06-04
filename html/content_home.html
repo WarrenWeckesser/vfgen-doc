@@ -16,6 +16,11 @@
 <li>Available export formats include MATLAB, Scilab, AUTO, GNU Scientific Library,
           SciPy, PyDSTool, XPP and more.</li>
 </ul>
+<span class="boxheader"><i>New in Version 2.6</i></span>
+    <ul>
+    <li>Added the <b>boostodeint</b> command for generating C++ code to use with the Boost
+    <b>odeint</b> library.
+    </ul>
 <span class="boxheader"><i>New in Version 2.5</i></span>
     <ul>
     <li>Added the <b>r</b> command for generating R code to use with the <b>deSolve</b> package.
@@ -56,6 +61,7 @@ Here, grouped roughly by category, are the output formats available:
 <a href="menu_cvode.html">CVODE</a> (C),
 <a href="menu_gsl.html">GNU Scientific Library</a> (C),
 ODEPACK solvers
+<a href="menu_boostodeint.html">Boost odeint</a> (C++)),
 <a href="menu_lsoda.html">LSODA</a>, LSODAR and LSODE (Fortran 77),
 <a href="menu_matlab.html">MATLAB</a>,
 <a href="menu_octave.html">Octave</a>,
@@ -119,6 +125,13 @@ program with the tool of your choice.
 <br />
 <hr />
 <h4>Recent changes</h4>
+<i>Verion 2.6.0 (XX XXX 2019)</i>
+<ul>
+<li>The <a href="menu_boostodeint.html">boostodeint</a> command was added.
+    This command generates C++ code to be used with the
+    <a href="https://www.boost.org/doc/libs/1_70_0/libs/numeric/odeint/doc/html/index.html">
+    Boost odeint library</a>.
+</ul>
 <i>Version 2.5.0 (15 January 2015)</i>
 <p>It has been a very long time since the last release.  An assortment of bug
 reports and requests for enhancements were the inspiration for resuming work

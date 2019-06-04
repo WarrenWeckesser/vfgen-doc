@@ -1,10 +1,9 @@
-#!/usr/bin/python
 
 
 def test_id_assignment(m, ident):
     k = 0
     for mitem in m:
-        print mitem[0], ' assigned ', [ident, k]
+        print(mitem[0], ' assigned ', [ident, k])
         if len(mitem) > 3:
             test_id_assignment(mitem[3], [ident, k])
         k = k + 1
@@ -22,16 +21,16 @@ def is_in_chain(idchild, idparent):
 
 
 def test_menu_list(m, rootident, my_ident):
-    print 'test_menu_list: ', rootident, ',', my_ident
+    print('test_menu_list: ', rootident, ',', my_ident)
     filler = "-----------------"
     n = len(rootident) - 1
     fill = filler[0:n] + ' '
     k = 0
     for mitem in m:
         if my_ident == [rootident, k]:
-            print fill, mitem[1], '(strong)'
+            print(fill, mitem[1], '(strong)')
         else:
-            print fill, mitem[1]
+            print(fill, mitem[1])
         if len(mitem) > 3:
             test_menu_list(mitem[3], [rootident, k], my_ident)
         k = k + 1
@@ -41,7 +40,7 @@ def test_menu_gen(m, sm, ident):
     k = 0
     for mitem in sm:
         filename = mitem[0] + '.html'
-        print 'Creating ' + filename
+        print('Creating ' + filename)
         test_menu_list(m, [0], [ident, k])
         if len(mitem) > 3:
             test_menu_gen(m, mitem[3], [ident, k])
@@ -71,7 +70,7 @@ def write_menu_files(m, sm, ident):
     k = 0
     for mitem in sm:
         filename = mitem[0] + '.html'
-        print 'Creating ' + filename
+        print('Creating ' + filename)
         f = open(filename, 'w')
         #f.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n')
         f.write('<!doctype html>\n')
@@ -117,8 +116,8 @@ def write_menu_files(m, sm, ident):
         f.write('</html>\n')
         f.close()
         if len(mitem) > 3:
-            print 'Recursing with'
-            print mitem[3]
+            print('Recursing with')
+            print(mitem[3])
             write_menu_files(m, mitem[3], [ident, k])
         k = k + 1
 
@@ -126,6 +125,7 @@ guide_submenu = [
     ['menu_fileformat',  '&sect; &nbsp; Vector Field File', 'content_vfxmlfmt.html'],
     ['menu_adolc',       '&sect; &nbsp; ADOL-C',      'content_adolc.html'],
     ['menu_auto',        '&sect; &nbsp; AUTO',        'content_auto.html'],
+    ['menu_boostodeint', '&sect; &nbsp; Boost Odeint','content_boostodeint.html'],
     ['menu_check',       '&sect; &nbsp; Check',       'content_check.html'],
     ['menu_cvode',       '&sect; &nbsp; CVODE',       'content_cvode.html'],
     ['menu_dde23',       '&sect; &nbsp; DDE23',       'content_dde23.html'],
