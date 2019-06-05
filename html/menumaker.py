@@ -65,7 +65,7 @@ def write_menu_list(f, m, rootident, my_ident):
         k = k + 1
 
 
-def write_menu_files(m, sm, ident):
+def write_menu_files(m, sm, ident, localmathjax):
     # print 'write_menu_files(...,...,',ident,')'
     k = 0
     for mitem in sm:
@@ -85,11 +85,16 @@ def write_menu_files(m, sm, ident):
 #               processEscapes: true}
 #   });
 # </script>
-        f.write("""
+        if localmathjax:
+            f.write("""
 <script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
 """)
-        #f.write('<link rel="stylesheet" href="menulayout.css" type="text/css" />\n')
-        #f.write('<link rel="stylesheet" href="menucontent.css" type="text/css" />\n')
+        else:
+            f.write("""
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+""")
         f.write('<link rel="stylesheet" href="menulayout.css">\n')
         f.write('<link rel="stylesheet" href="menucontent.css">\n')
         f.write('</head>\n')
@@ -160,4 +165,12 @@ m = [['index', 'Home', 'content_home.html'],
 
 # test_id_assignment(m, [0])
 # test_menu_gen(m, m, [0])
-write_menu_files(m, m, [0])
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-l", "--localmathjax", action="store_true",
+                        help="Generate HTML that uses the local copy of MathJax")
+    args = parser.parse_args()
+
+    write_menu_files(m, m, [0], localmathjax=args.localmathjax)
