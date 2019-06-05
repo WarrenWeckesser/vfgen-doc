@@ -17,7 +17,7 @@ A C file that can be used by AUTO is created by the command
 The name of the C file will be <b>[name]_avf.c</b>, where
 [name] is the name of the vector field given in the vector field file. 
 Only the AUTO function called "func" will be complete.
-A "stpnt" function will created to serve as a template.
+A "stpnt" function will be created to serve as a template.
 The <b>DefaultInitialConditions</b> of the variables will be
 used for the values in the "stpnt" function;
 the file must be edited by hand to define an actual known solution.
@@ -25,7 +25,7 @@ The remaining functions will be stubs that do nothing but return 0.
 </p>
 <p>
 Any user functions defined in the vector field file are ignored
-in AUTO command.
+by the VFGEN <b>auto</b> command.
 </p>
 <h4>Options</h4>
 <table class="options">
