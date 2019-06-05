@@ -6,7 +6,7 @@
 //  step size.
 //
 //
-//  Copyright (c) 2008 Warren Weckesser, www.warrenweckesser.net
+//  Copyright (c) 2008 Warren Weckesser, https://warrenweckesser.github.io
 //
 
 #include <iostream>

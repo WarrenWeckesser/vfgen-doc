@@ -1,6 +1,6 @@
 #
 # File:   MorrisLecar_cont.py
-# Author: Warren Weckesser, www.warrenweckesser.net
+# Author: Warren Weckesser, https://warrenweckesser.github.io
 #
 
 import matplotlib.pyplot as plt

@@ -1,7 +1,7 @@
 
 %
 % File:    wnscript.m
-% Author:  Warren Weckesser, www.warrenweckesser.net
+% Author:  Warren Weckesser, https://warrenweckesser.github.io
 %
 % MATLAB script to plot the results of the PDDE-CONT calculations for the
 % periodically forced weakly nonlinear system defined in wn2.vf.

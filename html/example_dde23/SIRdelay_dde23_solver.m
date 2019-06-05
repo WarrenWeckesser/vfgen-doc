@@ -3,7 +3,7 @@
 %
 % MATLAB function for the vector field "SIRdelay"
 %
-% Copyright (c) 2007 Warren Weckesser, www.warrenweckesser.net
+% Copyright (c) 2007 Warren Weckesser, https://warrenweckesser.github.io
 %
 
 %

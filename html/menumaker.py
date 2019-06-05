@@ -110,7 +110,7 @@ def write_menu_files(m, sm, ident):
         f.write('<!-- * * * End of '+mitem[2]+' * * * -->\n')
         f.write('</div>\n')
         f.write('<div id="menu-footer">\n')
-        f.write('Copyright &copy; 2005-2015 <a href="http://www.warrenweckesser.net/">Warren Weckesser</a>\n')
+        f.write('Copyright &copy; 2005-2019 <a href="https://warrenweckesser.github.io">Warren Weckesser</a>\n')
         f.write('</div>\n')
         f.write('</body>\n')
         f.write('</html>\n')

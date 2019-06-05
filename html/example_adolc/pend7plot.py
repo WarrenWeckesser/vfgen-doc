@@ -1,5 +1,5 @@
 # File:   pend7plot.py
-# Author: Warren Weckesser, www.warrenweckesser.net
+# Author: Warren Weckesser, https://warrenweckesser.github.io
 
 from numpy import loadtxt
 import matplotlib.pyplot as plt

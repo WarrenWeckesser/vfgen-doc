@@ -1,6 +1,6 @@
 #
 # File:   mg.auto
-# Author: Warren Weckesser, www.warrenweckesser.net
+# Author: Warren Weckesser, https://warrenweckesser.github.io
 #
 # Copyright (c) 2014 Warren Weckesser
 #

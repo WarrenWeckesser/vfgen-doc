@@ -1,6 +1,6 @@
 #
 # File: vanderpol_plotpos.auto
-# Author: Warren Weckesser, www.warrenweckesser.net
+# Author: Warren Weckesser, https://warrenweckesser.github.io
 #
 
 import numpy as np

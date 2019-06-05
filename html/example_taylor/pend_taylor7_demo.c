@@ -5,7 +5,7 @@
  *  "taylor" mode of VFGEN.
  *
  *
- *  Copyright (c) 2006-2014 Warren Weckesser, www.warrenweckesser.net
+ *  Copyright (c) 2006-2014 Warren Weckesser, https://warrenweckesser.github.io
  */
 
 #include <stdio.h>

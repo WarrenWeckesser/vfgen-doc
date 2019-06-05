@@ -1,7 +1,7 @@
 c
 c  rossler_pmap.f
 c 
-c  by Warren Weckesser, www.warrenweckesser.net
+c  by Warren Weckesser, https://warrenweckesser.github.io
 c
 c  Fortran 77 program that uses LSODAR to solve the differential equations
 c  defined in the vector field 'rossler'.  This program outputs the points

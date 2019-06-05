@@ -1,6 +1,6 @@
 #
 # File:   vanderpola.auto
-# Author: Warren Weckesser, www.warrenweckesser.net
+# Author: Warren Weckesser, https://warrenweckesser.github.io
 #
 # This AUTO script creates a partial bifurcation diagram for the
 # van der Pol system in which the second equation is y'=a-x
