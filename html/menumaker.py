@@ -123,7 +123,7 @@ def write_menu_files(m, sm, ident, localmathjax):
         if len(mitem) > 3:
             print('Recursing with')
             print(mitem[3])
-            write_menu_files(m, mitem[3], [ident, k])
+            write_menu_files(m, mitem[3], [ident, k], localmathjax)
         k = k + 1
 
 guide_submenu = [
