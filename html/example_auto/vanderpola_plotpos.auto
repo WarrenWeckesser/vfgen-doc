@@ -14,7 +14,6 @@ plt.figure(figsize=(9, 4)).subplots_adjust(bottom=0.12)
 plt.xlabel('x')
 plt.ylabel('y')
 plt.grid(True)
-plt.hold(True)
 plt.title('van der Pol Canards')
 lw = 1.5
 
