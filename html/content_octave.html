@@ -70,6 +70,19 @@ before using the functions defined in Octave file created by VFGEN.
 <h4>Options</h4>
 <table class="options">
 <tr>
+<td><b>parstyle</b></td>
+<td>
+This option controls how parameters are passed to the vector field and
+Jacobian functions. By default (<b>parstyle=global</b>), a global variable
+is used.
+If <b>parstyle=vector</b>, the parameters are passed to the functions in
+a single array.
+If <b>parstyle=list</b>, the parameters are passed as separate arguments.
+<br>
+<i>Default</i>: <b>parstyle=global</b>
+</td>
+</tr>
+<tr>
 <td><b>func</b></td>
 <td>
 If the option <b>func=yes</b> is given, an Octave function will be created
