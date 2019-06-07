@@ -12,7 +12,6 @@ plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 
 plt.xlabel('t')
 plt.grid(True)
-plt.hold(True)
 
 lw = 1.5
 plt.plot(t, theta, 'b', linewidth=lw)

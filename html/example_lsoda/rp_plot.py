@@ -8,7 +8,6 @@ x = data[:,0]
 
 plt.figure(1, figsize=(7.5, 6)).subplots_adjust(bottom=0.13, left=0.15)
 plt.grid(True)
-plt.hold(True)
 lw = 1
 plt.plot(x[:-1],x[1:], 'b.', linewidth=lw)
 plt.xlabel(r'$x_i$', size=18)

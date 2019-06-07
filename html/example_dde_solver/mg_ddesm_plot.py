@@ -12,7 +12,6 @@ plt.xlabel('t')
 plt.ylabel('x')
 plt.title('Mackey-Glass Delay Equation Solution')
 plt.grid(True)
-plt.hold(True)
 
 lw = 1.5
 plt.plot(t, x, 'b', linewidth=lw)

@@ -12,7 +12,6 @@ plt.xlabel('t')
 plt.ylabel('y')
 plt.title('State-Dependent Delay Example')
 plt.grid(True)
-plt.hold(True)
 
 lw = 1
 plt.plot(t, y, 'bo', linewidth=lw)

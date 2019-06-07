@@ -21,7 +21,6 @@ plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 plt.xlabel('t')
 plt.ylabel(r'$\theta$', fontsize=18)
 plt.grid(True)
-plt.hold(True)
 
 lw = 1.5
 plt.plot(t,theta, 'k--', linewidth=lw)
