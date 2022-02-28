@@ -47,37 +47,36 @@ def test_menu_gen(m, sm, ident):
         k = k + 1
 
 
-def write_menu_list(f, m, rootident, my_ident):
-    # print 'write_menu_list(...,...,',rootident,my_ident,')'
-    # print 'write_menu_list: ',rootident,'=',my_ident,' is ',rootident==my_ident
-    # if (not match_root(my_ident,rootident)):
-    #     return
-
+def write_menu_list(f, m, rootident, my_ident, prefix=''):
     k = 0
     for mitem in m:
         link_filename = mitem[0] + '.html'
+        f.write('            ')
         if my_ident == [rootident, k]:
-            f.write('            <li class="strong"><a href="'+link_filename+'">'+mitem[1]+'</a></li>\n')
+            f.write('<li class="strong"><a href="'+link_filename+'">'
+                    + mitem[1] + '</a></li>\n')
         else:
-            f.write('            <li><a href="'+link_filename+'">'+mitem[1]+'</a></li>\n')
+            f.write('<li><a href="' + link_filename + '">'
+                    + mitem[1] + '</a></li>\n')
         if len(mitem) > 3:
             write_menu_list(f, mitem[3], [rootident, k], my_ident)
         k = k + 1
 
 
-def write_menu_files(m, sm, ident, localmathjax):
-    # print 'write_menu_files(...,...,',ident,')'
+def write_menu_files(m, sm, ident, localmathjax, prefix=''):
     k = 0
     for mitem in sm:
         filename = mitem[0] + '.html'
         print('Creating ' + filename)
         f = open(filename, 'w')
-        #f.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n')
+        # f.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" '
+        #         '"http://www.w3.org/TR/html4/strict.dtd">\n')
         f.write('<!doctype html>\n')
         f.write('<html lang="en">\n')
         f.write('<head>\n')
         f.write('<title>VFGEN ' + mitem[1] + '</title>\n')
-        f.write('<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />\n')
+        f.write('<meta http-equiv="content-type" '
+                'content="text/html;charset=iso-8859-1" />\n')
 #         f.write("""
 # <script type="text/x-mathjax-config">
 #   MathJax.Hub.Config({
@@ -115,7 +114,10 @@ def write_menu_files(m, sm, ident, localmathjax):
         f.write('<!-- * * * End of '+mitem[2]+' * * * -->\n')
         f.write('</div>\n')
         f.write('<div id="menu-footer">\n')
-        f.write('Copyright &copy; 2005-2019 <a href="https://warrenweckesser.github.io">Warren Weckesser</a>\n')
+        f.write('Copyright &copy; 2005-2022 '
+                '<a href="https://warrenweckesser.github.io">'
+                'Warren Weckesser'
+                '</a>\n')
         f.write('</div>\n')
         f.write('</body>\n')
         f.write('</html>\n')
@@ -126,36 +128,38 @@ def write_menu_files(m, sm, ident, localmathjax):
             write_menu_files(m, mitem[3], [ident, k], localmathjax)
         k = k + 1
 
+
+c = '&sect; &nbsp;'
 guide_submenu = [
-    ['menu_fileformat',  '&sect; &nbsp; Vector Field File', 'content_vfxmlfmt.html'],
-    ['menu_adolc',       '&sect; &nbsp; ADOL-C',      'content_adolc.html'],
-    ['menu_auto',        '&sect; &nbsp; AUTO',        'content_auto.html'],
-    ['menu_boostodeint', '&sect; &nbsp; Boost Odeint','content_boostodeint.html'],
-    ['menu_check',       '&sect; &nbsp; Check',       'content_check.html'],
-    ['menu_cvode',       '&sect; &nbsp; CVODE',       'content_cvode.html'],
-    ['menu_dde23',       '&sect; &nbsp; DDE23',       'content_dde23.html'],
-    ['menu_ddebiftool',  '&sect; &nbsp; DDE-BIFTOOL', 'content_ddebiftool.html'],
-    ['menu_dde_solver',  '&sect; &nbsp; DDE_SOLVER',  'content_dde_solver.html'],
-    ['menu_delay2ode',   '&sect; &nbsp; Delay2ODE',   'content_delay2ode.html'],
-    ['menu_dstool',      '&sect; &nbsp; DSTool',      'content_dstool.html'],
-    ['menu_evf',         '&sect; &nbsp; EVF',         'content_evf.html'],
-    ['menu_gsl',         '&sect; &nbsp; GSL',         'content_gsl.html'],
-    ['menu_help',        '&sect; &nbsp; Help',        'content_help.html'],
-    ['menu_javascript',  '&sect; &nbsp; Javascript',  'content_javascript.html'],
-    ['menu_latex',       '&sect; &nbsp; LaTeX',       'content_latex.html'],
-    ['menu_lsoda',       '&sect; &nbsp; LSODA',       'content_lsoda.html'],
-    ['menu_matcont',     '&sect; &nbsp; MATCONT',     'content_matcont.html'],
-    ['menu_matlab',      '&sect; &nbsp; MATLAB',      'content_matlab.html'],
-    ['menu_octave',      '&sect; &nbsp; Octave',      'content_octave.html'],
-    ['menu_pddecont',    '&sect; &nbsp; PDDE-CONT',   'content_pddecont.html'],
-    ['menu_pydstool',    '&sect; &nbsp; PyDSTool',    'content_pydstool.html'],
-    ['menu_pygsl',       '&sect; &nbsp; PyGSL',       'content_pygsl.html'],
-    ['menu_r',           '&sect; &nbsp; R',           'content_r.html'],
-    ['menu_radau5',      '&sect; &nbsp; RADAU5',      'content_radau5.html'],
-    ['menu_scilab',      '&sect; &nbsp; Scilab',      'content_scilab.html'],
-    ['menu_scipy',       '&sect; &nbsp; SciPy',       'content_scipy.html'],
-    ['menu_taylor',      '&sect; &nbsp; Taylor',      'content_taylor.html'],
-    ['menu_xpp',         '&sect; &nbsp; XPP',         'content_xpp.html']
+    ['menu_fileformat',  f'{c} Vector Field File',  'content_vfxmlfmt.html'],
+    ['menu_adolc',       f'{c} ADOL-C',             'content_adolc.html'],
+    ['menu_auto',        f'{c} AUTO',               'content_auto.html'],
+    ['menu_boostodeint', f'{c} Boost Odeint',       'content_boostodeint.html'],
+    ['menu_check',       f'{c} Check',              'content_check.html'],
+    ['menu_cvode',       f'{c} CVODE',              'content_cvode.html'],
+    ['menu_dde23',       f'{c} DDE23',              'content_dde23.html'],
+    ['menu_ddebiftool',  f'{c} DDE-BIFTOOL',        'content_ddebiftool.html'],
+    ['menu_dde_solver',  f'{c} DDE_SOLVER',         'content_dde_solver.html'],
+    ['menu_delay2ode',   f'{c} Delay2ODE',          'content_delay2ode.html'],
+    ['menu_dstool',      f'{c} DSTool',             'content_dstool.html'],
+    ['menu_evf',         f'{c} EVF',                'content_evf.html'],
+    ['menu_gsl',         f'{c} GSL',                'content_gsl.html'],
+    ['menu_help',        f'{c} Help',               'content_help.html'],
+    ['menu_javascript',  f'{c} Javascript',         'content_javascript.html'],
+    ['menu_latex',       f'{c} LaTeX',              'content_latex.html'],
+    ['menu_lsoda',       f'{c} LSODA',              'content_lsoda.html'],
+    ['menu_matcont',     f'{c} MATCONT',            'content_matcont.html'],
+    ['menu_matlab',      f'{c} MATLAB',             'content_matlab.html'],
+    ['menu_octave',      f'{c} Octave',             'content_octave.html'],
+    ['menu_pddecont',    f'{c} PDDE-CONT',          'content_pddecont.html'],
+    ['menu_pydstool',    f'{c} PyDSTool',           'content_pydstool.html'],
+    ['menu_pygsl',       f'{c} PyGSL',              'content_pygsl.html'],
+    ['menu_r',           f'{c} R',                  'content_r.html'],
+    ['menu_radau5',      f'{c} RADAU5',             'content_radau5.html'],
+    ['menu_scilab',      f'{c} Scilab',             'content_scilab.html'],
+    ['menu_scipy',       f'{c} SciPy',              'content_scipy.html'],
+    ['menu_taylor',      f'{c} Taylor',             'content_taylor.html'],
+    ['menu_xpp',         f'{c} XPP',                'content_xpp.html']
 ]
 
 m = [['index', 'Home', 'content_home.html'],
@@ -169,8 +173,9 @@ m = [['index', 'Home', 'content_home.html'],
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
+    txt = "Generate HTML that uses the local copy of MathJax"
     parser.add_argument("-l", "--localmathjax", action="store_true",
-                        help="Generate HTML that uses the local copy of MathJax")
+                        help=txt)
     args = parser.parse_args()
 
     write_menu_files(m, m, [0], localmathjax=args.localmathjax)
