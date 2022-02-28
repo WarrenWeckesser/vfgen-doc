@@ -2,11 +2,11 @@ WEBFILES = vanderpol_rhs.f vanderpol_dr5.f
 
 VFGEN_OUTPUT = vanderpol_rhs.f vanderpol_dr5.f
 OBJS = vanderpol_dr5.o vanderpol_rhs.o radau5.o dc_lapack.o
-ALL = $(VFGEN_OUTPUT) vanderpol_plot.png vdp.dat vanderpol_dr5
+ALL = $(VFGEN_OUTPUT) vanderpol_plot.svg vdp.dat vanderpol_dr5
 
 all: $(ALL)
 
-vanderpol_plot.png: vanderpol_plot.py vdp.dat
+vanderpol_plot.svg: vanderpol_plot.py vdp.dat
 	python vanderpol_plot.py
 
 vdp.dat: vanderpol_dr5

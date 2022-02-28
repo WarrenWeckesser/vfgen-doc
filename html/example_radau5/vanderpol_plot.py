@@ -7,7 +7,6 @@
 
 from numpy import loadtxt
 import matplotlib.pyplot as plt
-from matplotlib.font_manager import FontProperties
 
 
 t, x, y = loadtxt('vdp.dat', unpack=True)
