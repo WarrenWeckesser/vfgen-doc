@@ -1,5 +1,5 @@
 # Files generated for the web page:
-WEBFILES = pendulum_adolc.cpp pendulum_adolc.h pend7.png
+WEBFILES = pendulum_adolc.cpp pendulum_adolc.h pend7.svg
 
 ADOLC_BASE = $(HOME)/adolc_base
 
@@ -7,11 +7,11 @@ ALL = $(WEBFILES) pend7.dat
 
 all: $(ALL)
 
-pend7.png: pend7plot.py pend7.dat
+pend7.svg: pend7plot.py pend7.dat
 	python pend7plot.py
 
 pend7.dat: pend_solver
-	./pend_solver > pend7.dat
+	LD_LIBRARY_PATH=$(ADOLC_BASE)/lib64 ./pend_solver > pend7.dat
 
 pend_solver: Makefile-pend_solver pendulum_adolc.cpp pendulum_adolc.h
 	make CPPFLAGS=-I$(ADOLC_BASE)/include LDFLAGS=-L$(ADOLC_BASE)/lib64 -f Makefile-pend_solver

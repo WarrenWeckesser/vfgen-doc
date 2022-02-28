@@ -5,7 +5,7 @@
 all: pend_solver
 
 pend_solver: pend_solver.o pendulum_adolc.o
-	$(CXX) $(LDFLAGS) -o pend_solver pend_solver.o pendulum_adolc.o -ladolc
+	$(CXX) -o pend_solver pend_solver.o pendulum_adolc.o $(LDFLAGS) -ladolc
 
 pend_solver.o: pend_solver.cpp pendulum_adolc.h
 	$(CXX) $(CPPFLAGS) -c pend_solver.cpp
