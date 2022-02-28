@@ -99,7 +99,7 @@ are
 <p>
 In a Linux (or similar) system, the following commands
 will compile and run <b>vanderpol_demo.f</b> using the <b>gfortran</b> compiler.
-<div class="mypre">$ gfortran -c -w opkdmain.f opkda1.f opkda2.f <br />
+<div class="mypre">$ gfortran -std=legacy -c -w opkdmain.f opkda1.f opkda2.f <br />
 $ gfortran -c vanderpol_rhs.f <br />
 $ gfortran -c vanderpol_demo.f <br />
 $ gfortran vanderpol_demo.o vanderpol_rhs.o opkdmain.o opkda1.o opkda2.o -o vanderpol_demo
@@ -110,7 +110,7 @@ The last command runs the program and sends the output to
 <a href="example_lsoda/vdp.dat">vdp.dat</a>.
 Here is a plot of the data:
 <center>
-<img class="exampleplot" src="example_lsoda/vanderpol_plot.png" alt="Graphs of x(t) and y(t)"/>
+<img class="exampleplot" src="example_lsoda/vanderpol_plot.svg" alt="Graphs of x(t) and y(t)"/>
 </center>
 <h4>Example 2</h4>
 <p>
@@ -147,6 +147,6 @@ uses the root-finding capability of LSODAR to compute the points where a traject
 crosses the plane <i>y</i> = 0 (and <i>x</i> < 0).  The resulting <i>x</i> return map
 is plotted in the following figure.
 <center>
-<img class="exampleplot" src="example_lsoda/rp_plot.png">
+<img class="exampleplot" src="example_lsoda/rp_plot.svg">
 </center>
 </p>
