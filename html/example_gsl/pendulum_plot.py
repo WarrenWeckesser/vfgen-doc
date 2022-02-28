@@ -17,7 +17,7 @@ h = plt.plot(t, v, 'g', linewidth=lw)
 plt.plot(t,energy, 'r--', linewidth=lw)
 plt.legend((r'$\theta$', r'$v$', 'energy'), prop=FontProperties(size=16))
 plt.title('Damped Pendulum')
-plt.savefig('pendulum_plot.png', dpi=200, transparent=True)
+plt.savefig('pendulum_plot.svg', dpi=200, transparent=True)
 
 # show()
 

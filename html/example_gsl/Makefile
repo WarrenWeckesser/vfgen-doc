@@ -1,12 +1,12 @@
 WEBFILES = pendulum_gvf.c pendulum_gvf.h pendulum_solve.c Makefile-pendulum \
-           pendulum.dat pendulum_plot.png
+           pendulum.dat pendulum_plot.svg
 
 VFGEN_OUTPUT = Makefile-pendulum pendulum_gvf.c pendulum_gvf.h pendulum_solve.c
-ALL = pendulum_plot.png pendulum.dat $(VFGEN_OUTPUT)
+ALL = pendulum_plot.svg pendulum.dat $(VFGEN_OUTPUT)
 
 all: $(ALL)
 
-pendulum_plot.png: pendulum_plot.py pendulum.dat
+pendulum_plot.svg: pendulum_plot.py pendulum.dat
 	python pendulum_plot.py
 
 pendulum.dat: pendulum_solve
