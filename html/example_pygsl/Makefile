@@ -1,11 +1,11 @@
-WEBFILES = pendulum.py pendulum_demo.py pend.dat pendplot.png
+WEBFILES = pendulum.py pendulum_demo.py pend.dat pendplot.svg
 
 VFGEN_OUTPUT = pendulum.py pendulum_demo.py
-ALL = pend.dat pendplot.png $(VFGEN_OUTPUT)
+ALL = pend.dat pendplot.svg $(VFGEN_OUTPUT)
 
 all: $(ALL)
 
-pendplot.png: pend.dat pendulum_plot.py
+pendplot.svg: pend.dat pendulum_plot.py
 	python pendulum_plot.py
 
 pend.dat: $(VFGEN_OUTPUT)
