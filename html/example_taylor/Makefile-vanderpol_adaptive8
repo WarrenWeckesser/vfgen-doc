@@ -14,6 +14,7 @@
 LDFLAGS=-lm
 
 vanderpol_adaptive8: vanderpol_adaptive8.o vanderpol_taylor8.o
+	$(CC) vanderpol_adaptive8.o vanderpol_taylor8.o $(LDFLAGS) -o vanderpol_adaptive8
 
 vanderpol_adaptive8.o: vanderpol_adaptive8.c vanderpol_taylor8.h
 

@@ -1,37 +1,28 @@
 
 from numpy import loadtxt
 import matplotlib.pyplot as plt
-from matplotlib.font_manager import FontProperties
 
-data = loadtxt('demo_gsl.dat')
-t      = data[:,0]
-theta  = data[:,1]
-data = loadtxt('demo3.dat')
-t3      = data[:,0]
-theta3  = data[:,1]
-data = loadtxt('demo7.dat')
-t7      = data[:,0]
-theta7  = data[:,1]
-data = loadtxt('demo15.dat')
-t15      = data[:,0]
-theta15  = data[:,1]
+
+t, theta, v = loadtxt('demo_gsl.dat', unpack=True)
+t3, theta3, v3 = loadtxt('demo3.dat', unpack=True)
+t7, theta7, v7 = loadtxt('demo7.dat', unpack=True)
+t15, theta15, v15 = loadtxt('demo15.dat', unpack=True)
 
 plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 
 plt.xlabel('t')
-plt.ylabel(r'$\theta$', fontsize=18)
+plt.ylabel(r'$\theta$')
 plt.grid(True)
 
 lw = 1.5
-plt.plot(t,theta, 'k--', linewidth=lw)
-plt.plot(t3,theta3, 'r', linewidth=lw)
-plt.plot(t7,theta7, linewidth=lw, color=(0.6, 0.7, 0))
-plt.plot(t15,theta15, linewidth=lw, color=(0.6, 0, 0.6))
+plt.plot(t, theta, 'k', linewidth=lw, label='GSL')
+plt.plot(t3, theta3, ':', linewidth=lw, label='Order 3')
+plt.plot(t7, theta7, '-.', linewidth=lw, label='Order 7')
+plt.plot(t15, theta15, '--', linewidth=lw, label='Order 15')
 plt.xlim(0, 1.0)
 plt.ylim(-0.75, 1.25)
 
-plt.legend(('GSL', 'Order 3', 'Order 7', 'Order 15'),
-    prop=FontProperties(size=14), loc='lower left')
+plt.legend(framealpha=1, shadow=True, loc='lower left')
 
-plt.savefig('pend_taylor_demo.png', dpi=200, transparent=True)
+plt.savefig('pend_taylor_demo.svg', dpi=200, transparent=True)
 # plt.show()

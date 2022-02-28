@@ -1,7 +1,7 @@
 
 from numpy import loadtxt
 import matplotlib.pyplot as plt
-from matplotlib.font_manager import FontProperties
+
 
 t, theta, v = loadtxt('pend7.dat', unpack=True)
 
@@ -11,13 +11,11 @@ plt.xlabel('t')
 plt.grid(True)
 
 lw = 1.5
-plt.plot(t, theta, 'b', linewidth=lw)
-plt.plot(t, v, 'g', linewidth=lw)
+plt.plot(t, theta, 'b', linewidth=lw, label=r'$\theta$')
+plt.plot(t, v, 'g--', linewidth=lw, label=r'$v$')
 
-plt.legend((r'$\theta$', r'$v$'), prop=FontProperties(size=16))
+plt.legend(framealpha=1, shadow=True)
 plt.title('Damped Pendulum')
-plt.savefig('pend7.png', dpi=200, transparent=True)
+plt.savefig('pend7.svg', dpi=200, transparent=True)
 
 # plt.show()
-
-
