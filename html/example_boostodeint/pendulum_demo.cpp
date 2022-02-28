@@ -30,10 +30,8 @@ int main(int argc, char *argv[])
 
     auto pendulum = pendulum_vf(9.81, 0.0, 1.0, 1.0);
     integrate_const(make_dense_output<rosenbrock4<double>>(1e-9, 1e-9), 
-        make_pair(
-            [&pendulum](const state_type &x_, state_type &dxdt_, const double t_)
-            {pendulum.pendulum_rhs(x_, dxdt_, t_);},
+        make_pair(pendulum,
             [&pendulum](const state_type &x_, matrix_type &J_, const double &t_, state_type &dfdt_)
-            {pendulum.pendulum_jac(x_, J_, t_, dfdt_);}
+            {pendulum.jac(x_, J_, t_, dfdt_);}
         ), y_, t0, tfinal, dt, writer);
 }

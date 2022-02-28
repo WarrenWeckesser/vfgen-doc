@@ -2,8 +2,8 @@
 reset
 set encoding utf8
 set colorsequence podo
-set terminal pngcairo size 360,240 enhanced font "Verdana,10"
-set output "pendulum.png"
+set term svg
+set output "pendulum.svg"
 set title "Pendulum"
 set xlabel "t"
 set grid
