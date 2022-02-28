@@ -16,6 +16,7 @@ $(VFGEN_OUTPUT): ../example_vf/pendulum.vf
 
 clean:
 	rm -f *.pyc
+	rm -rf __pycache__
 
-purge:
-	rm -f $(ALL) *.pyc
+purge: clean
+	rm -f $(ALL)
