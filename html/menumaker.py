@@ -96,6 +96,13 @@ def write_menu_files(m, sm, ident, localmathjax, prefix=''):
 """)
         f.write('<link rel="stylesheet" href="menulayout.css">\n')
         f.write('<link rel="stylesheet" href="menucontent.css">\n')
+        f.write("""
+<style>
+body {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+</style>
+""")
         f.write('</head>\n')
         f.write('<body>\n')
         f.write('<div id="menu-side">\n')
