@@ -1,7 +1,6 @@
 
 from numpy import loadtxt
 import matplotlib.pyplot as plt
-from matplotlib.font_manager import FontProperties
 
 
 t, x = loadtxt('mg.dat', unpack=True)
@@ -16,8 +15,6 @@ plt.grid(True)
 lw = 1.5
 plt.plot(t, x, 'b', linewidth=lw)
 
-plt.savefig('mg.png', dpi=200, transparent=True)
+plt.savefig('mg.svg', transparent=True)
 
-# show()
-
-
+# plt.show()

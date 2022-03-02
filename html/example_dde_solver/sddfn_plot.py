@@ -1,39 +1,33 @@
 import numpy as np
-from numpy import loadtxt
 import matplotlib.pyplot as plt
-from matplotlib.font_manager import FontProperties
 
 
-t, y = loadtxt('sddfn.dat', unpack=True)
+t, y = np.loadtxt('sddfn.dat', unpack=True)
 
 plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 
 plt.xlabel('t')
 plt.ylabel('y')
+plt.title('State-Dependent Delay Example: Feldstein-Neves')
 plt.grid(True)
 
+plt.plot(t, y, 'bo', markersize=3.5, alpha=0.5)
+
 lw = 1
-plt.plot(t, y, 'bo', linewidth=lw)
 
 t1 = np.linspace(0, 1.0, 51)
-y1 = range(0, 51)
-for k in range(0, 51):
-    y1[k] = np.sqrt(t1[k] + 1)
+y1 = np.sqrt(t1 + 1)
 plt.plot(t1, y1, 'g', linewidth=lw)
 
 t2 = np.linspace(1.0, 2.0, 51)
-y2 = range(0, 51)
-for k in range(0, 51):
-    y2[k] = (t2[k] + 1)/4 + 0.5 + (1 - np.sqrt(2.0)/2)*np.sqrt(t2[k] + 1)
-plt.plot(t2,y2, 'g', linewidth=lw)
+y2 = (t2 + 1)/4 + 0.5 + (1 - np.sqrt(2.0)/2)*np.sqrt(t2 + 1)
+plt.plot(t2, y2, 'g', linewidth=lw)
 
 # plt.xlim(xmin=0.0, xmax=2.0)
 plt.ylim(ymin=0.95, ymax=1.8)
 
-plt.legend((r'dde_solver', 'Exact'), loc='upper left',
-    prop=FontProperties(size=16), numpoints=1)
-plt.savefig('sddfn.png', dpi=200, transparent=True)
+plt.legend((r'dde_solver', 'exact'), loc='upper left',
+           numpoints=1, framealpha=1, shadow=True)
+plt.savefig('sddfn.svg', transparent=True)
 
 # plt.show()
-
-
