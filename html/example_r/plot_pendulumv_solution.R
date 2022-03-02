@@ -38,7 +38,7 @@ troot <- attr(sol, "troot")
 theta_root <- attr(sol, "valroot")[1,]
 
 # Plot the solution to a PNG file.
-png(file = "plot_pendulumv_solution.png")
+svg(file = "plot_pendulumv_solution.svg", width = 6, height = 5.5, pointsize = 9)
 par(mfcol = c(2,1), mar = c(4, 4.5, 2, 2), oma = c(1, 0, 1, 0), cex = 1.1)
 plot(sol[, "time"], sol[, "theta"],
      xlab = "t", ylab = "theta", main = "Pendulum Solution",
