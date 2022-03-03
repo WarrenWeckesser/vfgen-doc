@@ -1,11 +1,11 @@
-WEBFILES = pendulum.py pendulum_demo.py pendulum_plot.png
+WEBFILES = pendulum.py pendulum_demo.py pendulum_plot.svg
 
 VFGEN_OUTPUT = pendulum.py pendulum_demo.py
-ALL = pend.dat pendulum_plot.png $(VFGEN_OUTPUT)
+ALL = pend.dat pendulum_plot.svg $(VFGEN_OUTPUT)
 
 all: $(ALL)
 
-pendulum_plot.png: pend.dat pendulum_plot.py
+pendulum_plot.svg: pend.dat pendulum_plot.py
 	python pendulum_plot.py
 
 pend.dat: pendulum_demo.py pendulum.py
@@ -15,7 +15,7 @@ $(VFGEN_OUTPUT): ../example_vf/pendulum.vf
 	vfgen scipy:func=yes,demo=yes ../example_vf/pendulum.vf
 
 clean:
-	rm -f *.pyc pend.dat
+	rm -rf pend.dat __pycache__
 
 purge:
-	rm -f $(ALL) *.pyc
+	rm -rf $(ALL) __pycache__
