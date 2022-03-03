@@ -74,19 +74,17 @@ field file.
 </td>
 </tr>
 </table>
-<h4>Notes</h4>
-<ul>
-<li>Two non-standard features of the compiler are used:
-the Fortran code is written in lower case, and the underscore
-is used in variable names (e.g. <b>y_</b>).
-The underscores are an easy way to avoid conflicts with variable names
-that are taken from the vector field file.
-(If you need code without underscores, let me know.)
-</li>
-</ul>
+
 <h4>Example 1</h4>
 <p>
-Here is a sample vector field file: <a href="example_vf/vanderpol.vf">vanderpol.vf</a>.
+The vector field file <a href="example_vf/vanderpol.vf">vanderpol.vf</a>
+defines the differential equations for the
+<a href="https://en.wikipedia.org/wiki/Van_der_Pol_oscillator">van der Pol oscillator</a>,
+written as the system
+
+$$\frac{dx}{dt} = \frac{1}{\varepsilon}\left(y + x - \frac{x^3}{3}\right) $$
+$$\frac{dy}{dt} = -x$$
+
 <br>
 The files created by
 <div class="mypre">$ vfgen lsoda:demo=yes vanderpol.vf</div>
@@ -119,13 +117,13 @@ is
 <center>
 <table>
 <tr>
-<td><i>x</i> '</td><td>=</td><td>-(<i>y</i>+<i>z</i>)</td>
+<td><i>x</i> '</td><td>=</td><td>-(<i>y</i> + <i>z</i>)</td>
 </tr>
 <tr>
 <td><i>y</i> '</td><td>=</td><td><i>x</i> + <i>a</i><i>y</i></td>
 </tr>
 <tr>
-<td><i>z</i> '</td><td>=</td><td><i>b</i> + (<i>x</i>-<i>c</i>)<i>z</i></td>
+<td><i>z</i> '</td><td>=</td><td><i>b</i> + (<i>x</i> - <i>c</i>)<i>z</i></td>
 </tr>
 </table>
 </center>
