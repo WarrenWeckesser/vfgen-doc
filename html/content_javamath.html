@@ -1,0 +1,53 @@
+<h2>Apache Commons Math ODE Solver</h2>
+The <a href="https://commons.apache.org/proper/commons-math/">Apache Commons Math</a>
+library for Java includes a suite of functions for solving differential equations.
+The <b>javamath</b> command of VFGEN generates Java code that can be used with the
+Apache Commons Math library.
+
+<h3>The VFGEN <b>javamath</b> Command</h3>
+<p>
+Java files that can be used with the Apache Commons Math ODE suite
+are created by the command
+<div class="mypre">$ vfgen javamath vector_field_file.vf</div>
+</p>
+<p>
+The file that defines the system of differential equations is <b>[name]ODE.java</b>,
+where [name] is the name of the vector field given in the vector field file. 
+</p>
+<h4>Options</h4>
+<table class="options">
+<tr>
+<td>
+<b>demo</b>
+</td>
+<td>
+If the option <b>demo=yes</b> is given,
+the Java file <b>[name]Solver.java</b>
+and the bash script <b>build-and-run-[name]Solver.sh</b>
+are created.  The Java file contains a simple example of
+using an Apache Math Commons ODE solver to solve the
+differential equations; the solution is printed to the
+terminal.
+
+The bash script contains a few commands to build and run the solver.
+Experienced Java programmers can probably ignore this file,
+and instead use whatever IDE they are familiar with to
+build and run the demo program.
+<i>Default</i>: <b>demo=no</b>
+</td>
+</tr>
+</table>
+<h4>Example</h4>
+<p>
+Here is a sample vector field file: <a href="example_vf/pendulum.vf">pendulum.vf</a>.
+<br>
+The files created by
+<div class="mypre">$ vfgen javamath:demo=yes pendulum.vf</div>
+<br>
+are
+<ul>
+<li><a href="example_javamath/pendulumODE.java">pendulumODE.java</a></li>
+<li><a href="example_javamath/pendulumSolver.java">pendulumSolver.java</a></li>
+<li><a href="example_javamath/build-and-run-pendulumSolver.sh">build-and-run-pendulumSolver.sh</a></li>
+</ul>
+</p>

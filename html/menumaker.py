@@ -152,6 +152,7 @@ guide_submenu = [
     ['menu_evf',         f'{c} EVF',                'content_evf.html'],
     ['menu_gsl',         f'{c} GSL',                'content_gsl.html'],
     ['menu_help',        f'{c} Help',               'content_help.html'],
+    ['menu_javamath',    f'{c} Java Math',          'content_javamath.html'],
     ['menu_javascript',  f'{c} Javascript',         'content_javascript.html'],
     ['menu_latex',       f'{c} LaTeX',              'content_latex.html'],
     ['menu_lsoda',       f'{c} LSODA',              'content_lsoda.html'],
