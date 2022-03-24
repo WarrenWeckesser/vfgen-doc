@@ -6,7 +6,7 @@
 //  step size.
 //
 //
-//  Copyright (c) 2008 Warren Weckesser, https://warrenweckesser.github.io
+//  Copyright (c) 2008-2022 Warren Weckesser, https://warrenweckesser.github.io
 //
 
 #include <iostream>
@@ -20,13 +20,13 @@
 using namespace std;
 
 void print_solution(double t, double x[])
-    {
+{
     cout << setprecision(5) << fixed << setw(8) << t;
     cout << setprecision(10) << setw(15) << x[0] << setw(15) << x[1] << endl;
-    }
+}
 
 int main(int argc, char *argv[])
-    {
+{
     double p[4];
     double x[2], xnew[2];
     double f[2];
@@ -57,8 +57,7 @@ int main(int argc, char *argv[])
     t = 0.0;
     pendulum_vf(tag,x,f,p); // Call pendulum_vf once to compute the ADOL-C data
     print_solution(t,x);
-    for (int i = 0; i < numsteps; ++i)
-        {
+    for (int i = 0; i < numsteps; ++i) {
         // Call forode to compute the Taylor coefficients at the current x
         taylorcoeffs[0][0] = x[0];
         taylorcoeffs[1][0] = x[1];
@@ -67,15 +66,15 @@ int main(int argc, char *argv[])
         double hj = 1.0;
         xnew[0] = 0.0;
         xnew[1] = 0.0;
-        for (int j = 0; j < deg+1; ++j)
-            {
-            for (int i = 0; i < 2; ++i)
+        for (int j = 0; j < deg+1; ++j) {
+            for (int i = 0; i < 2; ++i) {
                 xnew[i] += taylorcoeffs[i][j]*hj;
-            hj = hj*h;
             }
+            hj = hj*h;
+        }
         x[0] = xnew[0];
         x[1] = xnew[1];
         t = t + h;
         print_solution(t,x);
-        }
     }
+}
