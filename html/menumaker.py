@@ -121,7 +121,7 @@ body {
         f.write('<!-- * * * End of '+mitem[2]+' * * * -->\n')
         f.write('</div>\n')
         f.write('<div id="menu-footer">\n')
-        f.write('Copyright &copy; 2005-2022 '
+        f.write('Copyright &copy; 2005-2024 '
                 '<a href="https://warrenweckesser.github.io">'
                 'Warren Weckesser'
                 '</a>\n')
@@ -154,6 +154,7 @@ guide_submenu = [
     ['menu_help',        f'{c} Help',               'content_help.html'],
     ['menu_javamath',    f'{c} Java Math',          'content_javamath.html'],
     ['menu_javascript',  f'{c} Javascript',         'content_javascript.html'],
+    ['menu_julia',       f'{c} Julia',              'content_julia.html'],
     ['menu_latex',       f'{c} LaTeX',              'content_latex.html'],
     ['menu_lsoda',       f'{c} LSODA',              'content_lsoda.html'],
     ['menu_matcont',     f'{c} MATCONT',            'content_matcont.html'],

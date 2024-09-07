@@ -14,16 +14,19 @@
 <li>Generate analytical expressions for Jacobians and higher derivatives automatically.</li>
 <li>Available export formats include SciPy (Python), R, GNU Scientific Library (C),
     Apache Commons Math (Java), Scilab, Octave, MATLAB, Boost Odeint (C++),
-    AUTO07p (C and Fortran), XPP and more.</li>
+    AUTO07p (C and Fortran), Julia, XPP and more.</li>
 </ul>
 <span class="boxheader"><i>New in Version 2.6</i></span>
     <ul>
     <li>Added the <b>boostodeint</b> command for generating C++ code to use with the Boost
-        <b>odeint</b> library.
-    <li>Add the <b>javamath</b> command for generating Java code to use with the
+        <b>odeint</b> library.</li>
+    <li>Added the <b>javamath</b> command for generating Java code to use with the
         ODE solvers in the Apache Commons Math library.</li>
+    <li>Added the <b>julia</b> command for generating Julia code the uses a solver
+        provided by the <a href="https://docs.sciml.ai/DiffEqDocs/stable/">DifferentialEquations.jl</a>
+        library.</li>
     <li>Added the <b>parstyle</b> option to the <b>octave</b> command to provide more choices
-        for handling the parameters in the generated Octave code.
+        for handling the parameters in the generated Octave code.</li>
     </ul>
 </div>
 <br />
@@ -67,7 +70,8 @@ ODEPACK solvers
 <a href="menu_r.html">R</a> (using the deSolve package),
 <a href="menu_radau5.html">RADAU5</a> (Fortran 77),
 <a href="menu_scilab.html">Scilab</a>,
-<a href="menu_scipy.html">SciPy</a> (Python)
+<a href="menu_scipy.html">SciPy</a> (Python),
+<a href="https://docs.sciml.ai/DiffEqDocs/stable/">DifferentialEquations.jl</a> (Julia)
 </td>
 </tr>
 <tr>
