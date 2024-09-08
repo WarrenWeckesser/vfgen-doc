@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<VectorField
+    Name="roberts" >
+<StateVariable
+    Name="y1"
+    Formula="-0.04*y1 + 1e4*y2*y3"
+    DefaultInitialCondition="1.0" />
+<StateVariable
+    Name="y2"
+    Formula="0.04*y1 - 1e4*y2*y3 - 3e7*y2*y2"
+    DefaultInitialCondition="0.0" />
+<StateVariable
+    Name="y3"
+    Formula="3e7*y2*y2"
+    DefaultInitialCondition="0.0" />
+</VectorField>
