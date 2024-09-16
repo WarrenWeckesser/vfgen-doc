@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<VectorField
+    Name="chua" >
+<Parameter
+    Name="alpha"
+    DefaultValue="10" />
+<Parameter
+    Name="beta"
+    DefaultValue="14.87" />
+<Parameter
+    Name="a"
+    DefaultValue="-1.27" />
+<Parameter
+    Name="b"
+    DefaultValue="-0.68" />
+<Expression
+    Name="f"
+    Formula="b*x + (a - b)/2 * (abs(x+1) - abs(x-1))" />
+<StateVariable
+    Name="x"
+    Formula="alpha*(y - x - f)"
+    DefaultInitialCondition="-1" />
+<StateVariable
+    Name="y"
+    Formula="x - y + z"
+    DefaultInitialCondition="0.1" />
+<StateVariable
+    Name="z"
+    Formula="-beta*y"
+    DefaultInitialCondition="0" />
+</VectorField>
