@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<VectorField
+    Name="smoothed_chua" >
+<Parameter
+    Name="alpha"
+    DefaultValue="10" />
+<Parameter
+    Name="beta"
+    DefaultValue="14.87" />
+<Parameter
+    Name="a"
+    DefaultValue="-1.27" />
+<Parameter
+    Name="b"
+    DefaultValue="-0.68" />
+<Parameter
+    Name="theta"
+    DefaultValue="2" />
+<Expression
+    Name="f"
+    Formula="b*x + (a - b)/theta * tanh(theta*x)" />
+<StateVariable
+    Name="x"
+    Formula="alpha*(y - x - f)"
+    DefaultInitialCondition="-1" />
+<StateVariable
+    Name="y"
+    Formula="x - y + z"
+    DefaultInitialCondition="0.1" />
+<StateVariable
+    Name="z"
+    Formula="-beta*y"
+    DefaultInitialCondition="0" />
+</VectorField>
