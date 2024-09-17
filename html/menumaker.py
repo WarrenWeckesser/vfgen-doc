@@ -90,8 +90,8 @@ def write_menu_files(m, sm, ident, localmathjax, prefix=''):
 """)
         else:
             f.write("""
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 """)
         f.write('<link rel="stylesheet" href="menulayout.css">\n')
