@@ -6,7 +6,7 @@ ALL = plotly_data.js pend.csv $(VFGEN_OUTPUT)
 
 all: $(ALL)
 
-plotly_data.js: pendulum_plot.py pend.csv
+plotly_data.js: pend.csv
 	python3 ../tools/csv_to_plotly.py pend.csv > plotly_data.js
 
 pend.csv: pendulum_cv7demo
