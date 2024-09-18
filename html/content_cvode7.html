@@ -94,7 +94,7 @@ After using these files to create the executable
 parameter values, and some solver parameters on the command line.
 For example,
 <div class="mypre">
-$ ./pendulum_cv7demo v=0.0 theta=3.14 b=0.5 stoptime=10 &gt; pend.dat
+$ ./pendulum_cv7demo v=0.0 theta=3.14 b=0.5 stoptime=10 &gt; pend.csv
 </div>
 </p>
 <p>
@@ -103,9 +103,27 @@ the relative error <b>relerr</b>, and the absolute error, <b>abserr</b>.)
 </p>
 <p>
 This command generates the file
-<a href="example_cvode/pend.dat">pend.dat</a>.
+<a href="example_cvode/pend.csv">pend.csv</a>.
 Here is a plot of the data:
 <center>
-<img class="exampleplot" src="example_cvode7/pendplot.png" alt="Graphs of theta, v, and energy" />
+<div id="cvode7_example_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+    import {data} from './example_cvode7/plotly_data.js';
+    var plotter = document.getElementById('cvode7_example_plot');
+    var layout = {
+        title:'Pendulum',
+        xaxis: {
+            title: {
+                text: 't',
+                font: {
+                    family: 'Courier New, monospace',
+                    size: 18
+                }
+            },
+        },
+    };
+    Plotly.newPlot(plotter, data, layout);
+    </script>
 </p>
