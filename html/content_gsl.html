@@ -82,7 +82,7 @@ program is compiled with the <b>make</b> command:
 <p>
 We run the resulting solver as follows:
 <div class="mypre">
-$ ./pendulum_solve v=0.0 theta=3.14 b=0.2 abserr=1e-9 stoptime=10 > pendulum.dat
+$ ./pendulum_solve v=0.0 theta=3.14 b=0.2 abserr=1e-9 stoptime=10 > pendulum.csv
 </div>
 </p>
 <p>
@@ -91,9 +91,27 @@ and the relative error <b>relerr</b>.)
 </p>
 <p>
 This command generates the file
-<a href="example_gsl/pendulum.dat">pendulum.dat</a>.
+<a href="example_gsl/pendulum.csv">pendulum.csv</a>.
 Here is a plot of the data:
 <center>
-<img class="exampleplot" src="example_gsl/pendulum_plot.svg" alt="Graphs of theta, v and energy"/>
+<div id="gsl_example_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+    import {data} from './example_cvode7/plotly_data.js';
+    var plotter = document.getElementById('gsl_example_plot');
+    var layout = {
+        title:'Pendulum',
+        xaxis: {
+            title: {
+                text: 't',
+                font: {
+                    family: 'Courier New, monospace',
+                    size: 18
+                }
+            },
+        },
+    };
+    Plotly.newPlot(plotter, data, layout);
+</script>
 </p>
