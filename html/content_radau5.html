@@ -94,12 +94,30 @@ $ gfortran -c vanderpol_rhs.f <br />
 $ gfortran -c vanderpol_dr5.f <br />
 $ gfortran vanderpol_dr5.o vanderpol_rhs.o radau5.o dc_lapack.o -llapack -o vanderpol_dr5
 <br />
-$ ./vanderpol_dr5 > vdp.dat <br />
+$ ./vanderpol_dr5 > vdp.csv <br />
 </div>
 The last command runs the program and sends the output to
-<span class="tt">vdp.dat</span>.
+<span class="tt">vdp.csv</span>.
 Here is a plot of the data:
 <center>
-<img class="exampleplot" src="example_radau5/vanderpol_plot.svg" alt="Graphs of x(t) and y(t)"/>
+<div id="radau5_example_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+    import {data} from './example_radau5/plotly_data.js';
+    var plotter = document.getElementById('radau5_example_plot');
+    var layout = {
+        title:'van der Pol',
+        xaxis: {
+            title: {
+                text: 't',
+                font: {
+                    family: 'Courier New, monospace',
+                    size: 18
+                }
+            },
+        },
+    };
+    Plotly.newPlot(plotter, data, layout);
+</script>
 </p>

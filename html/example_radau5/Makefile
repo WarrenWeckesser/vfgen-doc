@@ -2,15 +2,15 @@ WEBFILES = vanderpol_rhs.f vanderpol_dr5.f
 
 VFGEN_OUTPUT = vanderpol_rhs.f vanderpol_dr5.f
 OBJS = vanderpol_dr5.o vanderpol_rhs.o radau5.o dc_lapack.o
-ALL = $(VFGEN_OUTPUT) vanderpol_plot.svg vdp.dat vanderpol_dr5
+ALL = $(VFGEN_OUTPUT) plotly_data.js vdp.csv vanderpol_dr5
 
 all: $(ALL)
 
-vanderpol_plot.svg: vanderpol_plot.py vdp.dat
-	python vanderpol_plot.py
+plotly_data.js: vdp.csv
+	python3 ../tools/csv_to_plotly.py vdp.csv > plotly_data.js
 
-vdp.dat: vanderpol_dr5
-	./vanderpol_dr5 > vdp.dat
+vdp.csv: vanderpol_dr5
+	./vanderpol_dr5 > vdp.csv
 
 vanderpol_dr5:	$(OBJS)
 	gfortran $(OBJS) -llapack -o vanderpol_dr5
@@ -23,7 +23,7 @@ $(VFGEN_OUTPUT): ../example_vf/vanderpol.vf
 
 
 clean:
-	rm -f *.o vdp.dat vanderpol_dr5
+	rm -f *.o vdp.csv vanderpol_dr5
 
 purge:
 	rm -f $(ALL) *.o
