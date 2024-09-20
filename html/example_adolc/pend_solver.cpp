@@ -6,7 +6,7 @@
 //  step size.
 //
 //
-//  Copyright (c) 2008-2022 Warren Weckesser, https://warrenweckesser.github.io
+//  Copyright (c) 2008-2024 Warren Weckesser, https://warrenweckesser.github.io
 //
 
 #include <iostream>
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     int deg = 7;
     const int tag = 1;
 
-    double **taylorcoeffs = myalloc2(2,deg+1);
+    double **taylorcoeffs = myalloc2(2, deg+1);
 
     //
     // Set the pendulum parameters.
@@ -60,14 +60,14 @@ int main(int argc, char *argv[])
     h = 0.05;        // step size
     numsteps = 400;
     t = 0.0;
-    pendulum_vf(tag,x,f,p); // Call pendulum_vf once to compute the ADOL-C data
+    pendulum_vf(tag, x, f, p); // Call pendulum_vf once to compute the ADOL-C data
     print_header();
-    print_solution(t,x);
+    print_solution(t, x);
     for (int i = 0; i < numsteps; ++i) {
         // Call forode to compute the Taylor coefficients at the current x
         taylorcoeffs[0][0] = x[0];
         taylorcoeffs[1][0] = x[1];
-        forode(tag,2,deg,taylorcoeffs);
+        forode(tag, 2, deg, taylorcoeffs);
         // Use the Taylor coefficients to compute the approximate value xnew = x(t+h)
         double hj = 1.0;
         xnew[0] = 0.0;
@@ -81,6 +81,6 @@ int main(int argc, char *argv[])
         x[0] = xnew[0];
         x[1] = xnew[1];
         t = t + h;
-        print_solution(t,x);
+        print_solution(t, x);
     }
 }
