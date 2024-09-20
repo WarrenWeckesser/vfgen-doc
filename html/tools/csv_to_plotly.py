@@ -7,7 +7,13 @@ filename = sys.argv[1]
 with open(filename) as f:
     content = f.read()
 
+lines = content.splitlines()
+headers = [field.strip() for field in lines[0].split(',')]
+
 selected_headers = sys.argv[2:]
+if len(selected_headers) == 0:
+    selected_headers = headers[1:]
+
 display_name_map = {}
 selected_column_names = []
 for name in selected_headers:
@@ -18,13 +24,11 @@ for name in selected_headers:
     selected_column_names.append(column_name)
     display_name_map[column_name] = display_name
 
-lines = content.splitlines()
-headers = [field.strip() for field in lines[0].split(',')]
 data = [line.split(',') for line in lines[1:]]
 columns = list(zip(*data))
 
 for k in range(1, len(columns)):
-    if len(selected_column_names) == 0 or headers[k] in selected_column_names:
+    if headers[k] in selected_column_names:
         print(f"const {headers[k]} = {{")
         print("  x: ", end="")
         values = ", ".join(columns[0])

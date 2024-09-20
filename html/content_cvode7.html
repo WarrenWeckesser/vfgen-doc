@@ -110,20 +110,16 @@ Here is a plot of the data:
 </center>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 <script type="module">
-    import {data} from './example_cvode7/plotly_data.js';
-    var plotter = document.getElementById('cvode7_example_plot');
-    var layout = {
-        title:'Pendulum',
-        xaxis: {
-            title: {
-                text: 't',
-                font: {
-                    family: 'Courier New, monospace',
-                    size: 18
-                }
-            },
+import {data} from './example_cvode7/plotly_data.js';
+var plotter = document.getElementById('cvode7_example_plot');
+var layout = {
+    title:'Pendulum',
+    xaxis: {
+        title: {
+            text: 't'
         },
-    };
-    Plotly.newPlot(plotter, data, layout);
-    </script>
+    },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
 </p>
