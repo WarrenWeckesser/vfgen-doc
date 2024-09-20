@@ -2,14 +2,14 @@
 # directory of ADOL-C before running this Makefile.
 
 # Files generated for the web page:
-WEBFILES = pendulum_adolc.cpp pendulum_adolc.h pend7.svg
+WEBFILES = pendulum_adolc.cpp pendulum_adolc.h plotly_data.js
 
-ALL = $(WEBFILES) pend7.csv
+ALL = $(WEBFILES) plotly_data.js
 
 all: $(ALL)
 
-pend7.svg: pend7plot.py pend7.csv
-	python3 pend7plot.py
+plotly_data.js: pend7.csv
+	python3 ../tools/csv_to_plotly.py pend7.csv > plotly_data.js
 
 pend7.csv: pend_solver
 	bash run_solver.sh $(ADOLC_BASE)/lib
