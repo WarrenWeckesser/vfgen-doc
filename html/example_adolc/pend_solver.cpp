@@ -19,10 +19,15 @@
 
 using namespace std;
 
+void print_header()
+{
+    cout << "t, theta, v" << endl;
+}
+
 void print_solution(double t, double x[])
 {
-    cout << setprecision(5) << fixed << setw(8) << t;
-    cout << setprecision(10) << setw(15) << x[0] << setw(15) << x[1] << endl;
+    cout << setprecision(5) << fixed << setw(8) << t << ", ";
+    cout << setprecision(10) << setw(15) << x[0] << ", " << setw(15) << x[1] << endl;
 }
 
 int main(int argc, char *argv[])
@@ -56,6 +61,7 @@ int main(int argc, char *argv[])
     numsteps = 400;
     t = 0.0;
     pendulum_vf(tag,x,f,p); // Call pendulum_vf once to compute the ADOL-C data
+    print_header();
     print_solution(t,x);
     for (int i = 0; i < numsteps; ++i) {
         // Call forode to compute the Taylor coefficients at the current x

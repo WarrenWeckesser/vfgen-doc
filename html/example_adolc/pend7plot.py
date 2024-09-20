@@ -5,7 +5,7 @@ from numpy import loadtxt
 import matplotlib.pyplot as plt
 
 
-t, theta, v = data = loadtxt('pend7.dat', unpack=True)
+t, theta, v = data = loadtxt('pend7.csv', unpack=True, delimiter=',', skiprows=1)
 
 plt.figure(1, figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 plt.xlabel('t')

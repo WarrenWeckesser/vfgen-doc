@@ -1,26 +1,27 @@
+# Define the environmenet variable ADOLC_BASE to be the installation
+# directory of ADOL-C before running this Makefile.
+
 # Files generated for the web page:
 WEBFILES = pendulum_adolc.cpp pendulum_adolc.h pend7.svg
 
-ADOLC_BASE = $(HOME)/adolc_base
-
-ALL = $(WEBFILES) pend7.dat
+ALL = $(WEBFILES) pend7.csv
 
 all: $(ALL)
 
-pend7.svg: pend7plot.py pend7.dat
-	python pend7plot.py
+pend7.svg: pend7plot.py pend7.csv
+	python3 pend7plot.py
 
-pend7.dat: pend_solver
-	LD_LIBRARY_PATH=$(ADOLC_BASE)/lib64 ./pend_solver > pend7.dat
+pend7.csv: pend_solver
+	bash run_solver.sh $(ADOLC_BASE)/lib
 
 pend_solver: Makefile-pend_solver pendulum_adolc.cpp pendulum_adolc.h
-	make CPPFLAGS=-I$(ADOLC_BASE)/include LDFLAGS=-L$(ADOLC_BASE)/lib64 -f Makefile-pend_solver
+	make CPPFLAGS="-I$(ADOLC_BASE)/include -std=c++17" LDFLAGS=-L$(ADOLC_BASE)/lib -f Makefile-pend_solver
 
 pendulum_adolc.cpp pendulum_adolc.h: ../example_vf/pendulum.vf
 	vfgen adolc ../example_vf/pendulum.vf
 
 clean:
-	rm -f pend7.dat *.tap *.o pend_solver
+	rm -f pend7.csv *.tap *.o pend_solver
 
 purge: clean
 	rm -f $(WEBFILES)
