@@ -69,44 +69,39 @@ are
 <ul>
 <li><a href="example_boostodeint/pendulum_vf.cpp">pendulum_vf.cpp</a></li>
 <li><a href="example_boostodeint/pendulum_vf.h">pendulum_vf.h</a></li>
-<li><a href="example_boostodeint/pendulum_demo.cpp">pendulum_demo.cpp</a>,</li>
+<li><a href="example_boostodeint/pendulum_demo.cpp">pendulum_demo.cpp</a></li>
+<li><a href="example_boostodeint/Makefile.pendulum_demo">Makefile.pendulum_demo</a></li>
 </ul>
 <p>
 The demonstration program can be compiled with the commands
 <div class="mypre">
-$ g++ -c pendulum_vf.cpp  <br />
-$ g++ -c pendulum_demo.cpp  <br />
-$ g++ pendulum_demo.o pendulum_vf.o -o pendulum_demo  <br />
+$ make -f Makefile.pendulum_demo
 </div>
 The following command runs the demonstration program
-and redirects the output to the file <b>pendulum.out</b>.
+and redirects the output to the file <b>pendulum_data.csv</b>.
 <div class="mypre">
-$ ./pendulum_demo > pendulum.out
+$ ./pendulum_demo > pendulum_data.csv
 </div>
 </p>
 <p>
 Here is a plot of the data:
+
 <center>
-<img class="exampleplot" src="example_boostodeint/pendulum.svg" alt="Graphs of theta, v, and energy" />
+<div id="boostodeint_example_plot" style="width:600px;height:350px;"></div>
 </center>
-</p>
-<p>
-The plot was generated with <b>gnuplot</b>, using the command
-<div class="mypre">
-$ gnuplot &lt; plot_pendulum.gnuplot
-</div>
-where <a href="example_boostodeint/plot_pendulum.gnuplot">plot_pendulum.gnuplot</a>
-is a gnuplot script containing the following commands:
-<div class="mypre">
-reset <br />
-set encoding utf8 <br />
-set colorsequence podo <br />
-set term svg <br />
-set output "pendulum.svg" <br />
-set title "Pendulum" <br />
-set xlabel "t" <br />
-set grid <br />
-plot "pendulum.out" using 1:2 title "&theta;" with lines linestyle 1, \ <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pendulum.out" using 1:3 title "v" with lines linestyle 2 dashtype (12,6) <br />
-</div>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data} from './example_boostodeint/plotly_data.js';
+var plotter = document.getElementById('boostodeint_example_plot');
+var layout = {
+    title:'Pendulum',
+    xaxis: {
+        title: {
+            text: 't'
+        },
+    },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
 </p>
