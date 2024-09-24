@@ -102,14 +102,31 @@ $ gfortran -c vanderpol_rhs.f <br />
 $ gfortran -c vanderpol_demo.f <br />
 $ gfortran vanderpol_demo.o vanderpol_rhs.o opkdmain.o opkda1.o opkda2.o -o vanderpol_demo
 <br />
-$ ./vanderpol_demo > vdp.dat <br />
+$ ./vanderpol_demo > vdp.csv <br />
 </div>
 The last command runs the program and sends the output to
-<a href="example_lsoda/vdp.dat">vdp.dat</a>.
+<a href="example_lsoda/vdp.dat">vdp.csv</a>.
 Here is a plot of the data:
+
 <center>
-<img class="exampleplot" src="example_lsoda/vanderpol_plot.svg" alt="Graphs of x(t) and y(t)"/>
+<div id="lsoda_example1_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data} from './example_lsoda/plotly_vdp_data.js';
+var plotter = document.getElementById('lsoda_example1_plot');
+var layout = {
+    title:'van der Pol',
+    xaxis: {
+        title: {
+            text: 't'
+        },
+    },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
+
 <h4>Example 2</h4>
 <p>
 The <a href="http://www.scholarpedia.org/article/Rossler_attractor">Rossler system</a>
@@ -144,7 +161,33 @@ The program <a href="example_lsoda/rossler_pmap.f">rossler_pmap.f</a>
 uses the root-finding capability of LSODAR to compute the points where a trajectory
 crosses the plane <i>y</i> = 0 (and <i>x</i> < 0).  The resulting <i>x</i> return map
 is plotted in the following figure.
+
 <center>
-<img class="exampleplot" src="example_lsoda/rp_plot.svg">
+<div id="lsoda_example2_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data} from './example_lsoda/plotly_rp_x_return_map_data.js';
+var plotter = document.getElementById('lsoda_example2_plot');
+var layout = {
+    title:'Rossler System, x Return Map',
+    xaxis: {
+        title: {
+            text: 'x[i]'
+        },
+        scaleanchor: 'y',
+        scaleratio: 1,
+        constrain: 'domain'
+    },
+    yaxis: {
+        title: {
+            text: 'x[i+1]'
+        },
+        scaleanchor: 'x',
+        scaleratio: 1
+    },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
 </p>

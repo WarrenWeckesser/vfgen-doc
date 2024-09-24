@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-t, y = np.loadtxt('sdd.dat', unpack=True)
+t, y = np.loadtxt('sdd.csv', unpack=True, skiprows=1, delimiter=',')
 
 plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 

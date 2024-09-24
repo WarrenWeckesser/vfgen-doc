@@ -1,6 +1,6 @@
 FC = gfortran
 
-WEBFILES = MackeyGlass.f90 MackeyGlass_demo.f90 mg.svg \
+WEBFILES = MackeyGlass.f90 MackeyGlass_demo.f90 plotly_example1_data.js \
            sdd.f90 sdd_demo.f90 sdd.svg \
            sddfn.f90 sddfn_demo.f90 sddfn.svg
 
@@ -14,13 +14,13 @@ all: example1 example2 example3
 # Example 1
 #
 
-example1: mg.svg
+example1: plotly_example1_data.js
 
-mg.svg: mg.dat mg_ddesm_plot.py
-	python mg_ddesm_plot.py
+plotly_example1_data.js: mg.csv
+	python ../tools/csv_to_plotly.py mg.csv > plotly_example1_data.js
 
-mg.dat: MackeyGlass_demo
-	./MackeyGlass_demo > mg.dat
+mg.csv: MackeyGlass_demo
+	./MackeyGlass_demo > mg.csv
 
 MackeyGlass_demo_stoptime500.f90: MackeyGlass_demo.f90
 	sed 's/stoptime = 10\.0/stoptime = 500.0/' MackeyGlass_demo.f90 > MackeyGlass_demo_stoptime500.f90
@@ -37,11 +37,11 @@ $(MG_VFGEN_FILES): ../example_vf/MackeyGlass.vf
 
 example2: sdd.svg
 
-sdd.svg:  sdd.dat sdd_plot.py
+sdd.svg:  sdd.csv sdd_plot.py
 	python sdd_plot.py
 
-sdd.dat: sdd_demo
-	./sdd_demo > sdd.dat
+sdd.csv: sdd_demo
+	./sdd_demo > sdd.csv
 
 sdd_demo: $(SDD_VFGEN_FILES) dde_solver_m.o
 	$(FC) $(SDD_VFGEN_FILES)  dde_solver_m.o -o sdd_demo
@@ -55,11 +55,11 @@ $(SDD_VFGEN_FILES): ../example_vf/sdd.vf
 
 example3: sddfn.svg
 
-sddfn.svg: sddfn.dat sddfn_plot.py
+sddfn.svg: sddfn.csv sddfn_plot.py
 	python sddfn_plot.py
 
-sddfn.dat: sddfn_demo
-	./sddfn_demo > sddfn.dat
+sddfn.csv: sddfn_demo
+	./sddfn_demo > sddfn.csv
 
 sddfn_demo: sddfn_demo_stoptime2.f90 sddfn.f90 dde_solver_m.o
 	$(FC) sddfn.f90 sddfn_demo_stoptime2.f90 dde_solver_m.o -o sddfn_demo
@@ -86,8 +86,8 @@ clean:
 
 purge:
 	rm -f *.o *.mod
-	rm -f mg.svg mg.dat MackeyGlass_demo_stoptime500.f90 \
+	rm -f plotly_example1_data.js mg.csv MackeyGlass_demo_stoptime500.f90 \
           $(MG_VFGEN_FILES) MackeyGlass_demo
-	rm -f sdd.svg sdd.dat $(SDD_VFGEN_FILES) sdd_demo
-	rm -f sddfn.svg sddfn.dat sddfn_demo_stoptime2.f90 \
+	rm -f sdd.svg sdd.csv $(SDD_VFGEN_FILES) sdd_demo
+	rm -f sddfn.svg sddfn.csv sddfn_demo_stoptime2.f90 \
           $(SDDFN_VFGEN_FILES) sddfn_demo

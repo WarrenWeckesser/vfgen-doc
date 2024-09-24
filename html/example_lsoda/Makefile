@@ -21,7 +21,7 @@ vanderpol_demo:	$(EXAMPLE1_OBJS) $(LSODA_OBJS)
 
 
 plotly_rp_x_return_map_data.js: rp_x_return_map.csv
-	python ../tools/csv_to_plotly.py rp_x_return_map.csv scatter > plotly_rp_x_return_map_data.js
+	python ../tools/csv_to_plotly.py rp_x_return_map.csv xnext,scatter > plotly_rp_x_return_map_data.js
 
 rp_x_return_map.csv: rp.csv rp_convert_to_return_map_format.py
 	python rp_convert_to_return_map_format.py
