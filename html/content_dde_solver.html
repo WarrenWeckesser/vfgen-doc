@@ -129,9 +129,25 @@ In Linux, we compile and run this program with the commands
 $ ./sdd_demo > sdd.dat</div>
 Here is a plot of the result.  The data computed by DDE_SOLVER is plotted with
 blue dots; the exact solution is the green line.
+
 <center>
-<img class="exampleplot" src="example_dde_solver/sdd.svg">
+<div id="dde_solver_example2_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data} from './example_dde_solver/plotly_example2_data.js';
+var plotter = document.getElementById('dde_solver_example2_plot');
+var layout = {
+    title:'State-Dependent Delay Example',
+    xaxis: {
+        title: {
+            text: 't'
+        },
+    },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
 For reference, the exact solution is
 
 \[
@@ -176,9 +192,25 @@ Here is a plot of the result, after changing the variables in the demo program
 to <b>relerr=1D-9</b>, <b>abserr=1D-11</b>, and <b>stoptime=2.0</b>.
 The data computed by DDE_SOLVER is plotted with
 blue dots; the exact solution is the green line.
+
 <center>
-<img class="exampleplot" src="example_dde_solver/sddfn.svg">
+<div id="dde_solver_example3_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data} from './example_dde_solver/plotly_example3_data.js';
+var plotter = document.getElementById('dde_solver_example3_plot');
+var layout = {
+    title:'State-Dependent Delay Example: Feldstein-Neves',
+    xaxis: {
+        title: {
+            text: 't'
+        },
+    },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
 For reference, the exact solution is
 
 $$

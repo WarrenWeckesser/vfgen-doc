@@ -1,20 +1,18 @@
 FC = gfortran
 
 WEBFILES = MackeyGlass.f90 MackeyGlass_demo.f90 plotly_example1_data.js \
-           sdd.f90 sdd_demo.f90 sdd.svg \
-           sddfn.f90 sddfn_demo.f90 sddfn.svg
+           sdd.f90 sdd_demo.f90 \
+		   sddfn.f90 sddfn_demo.f90
 
 MG_VFGEN_FILES = MackeyGlass.f90 MackeyGlass_demo.f90
 SDD_VFGEN_FILES = sdd.f90 sdd_demo.f90
 SDDFN_VFGEN_FILES = sddfn.f90 sddfn_demo.f90
 
-all: example1 example2 example3
+all: plotly_example1_data.js plotly_example1_data.js plotly_example2_data.js
 
 #
 # Example 1
 #
-
-example1: plotly_example1_data.js
 
 plotly_example1_data.js: mg.csv
 	python ../tools/csv_to_plotly.py mg.csv > plotly_example1_data.js
@@ -32,13 +30,14 @@ $(MG_VFGEN_FILES): ../example_vf/MackeyGlass.vf
 	vfgen dde_solver:demo=yes ../example_vf/MackeyGlass.vf
 
 #
+# For examples 2 and 3
+#
+plotly_example2_data.js plotly_example3_data.js: sdd.csv sddfn.csv
+	python state_dependent_csv_to_plotly.py
+
+#
 # Example 2
 #
-
-example2: sdd.svg
-
-sdd.svg:  sdd.csv sdd_plot.py
-	python sdd_plot.py
 
 sdd.csv: sdd_demo
 	./sdd_demo > sdd.csv
@@ -52,11 +51,6 @@ $(SDD_VFGEN_FILES): ../example_vf/sdd.vf
 #
 # Example 3
 #
-
-example3: sddfn.svg
-
-sddfn.svg: sddfn.csv sddfn_plot.py
-	python sddfn_plot.py
 
 sddfn.csv: sddfn_demo
 	./sddfn_demo > sddfn.csv
@@ -88,6 +82,6 @@ purge:
 	rm -f *.o *.mod
 	rm -f plotly_example1_data.js mg.csv MackeyGlass_demo_stoptime500.f90 \
           $(MG_VFGEN_FILES) MackeyGlass_demo
-	rm -f sdd.svg sdd.csv $(SDD_VFGEN_FILES) sdd_demo
-	rm -f sddfn.svg sddfn.csv sddfn_demo_stoptime2.f90 \
+	rm -f plotly_example2_data.js sdd.csv $(SDD_VFGEN_FILES) sdd_demo
+	rm -f plotly_example3_data.js sddfn.csv sddfn_demo_stoptime2.f90 \
           $(SDDFN_VFGEN_FILES) sddfn_demo
