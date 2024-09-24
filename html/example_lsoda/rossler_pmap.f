@@ -53,6 +53,9 @@ c     --- Other LSODAR parameters ---
       lrw = 73
       liw = 23
       jt = 1
+c     --- Write header line for CSV output ---
+      write(6, 30)
+30    format(1X, "x, y, z")
 c     --- Call DLSODAR in a loop to compute the cross-section maps ---
       do 40 i = 1,nsteps
           t    = 0.0D0
@@ -73,7 +76,7 @@ c     --- Call DLSODAR in a loop to compute the cross-section maps ---
           if (istate .ne. 3) goto 80
 c         skip the first 20 iterations
           if (i .gt. 20)  write (6,29) (y_(j), j = 1,3)
-29        format(1X,3E18.10)
+29        format(1X, E18.10, ", ", E18.10, ", ", E18.10)
 40    continue
       stop
 80    write (6,89) istate
