@@ -48,7 +48,7 @@ def example3_solution(t):
 
 
 t, y = np.loadtxt('sdd.csv', unpack=True, skiprows=1, delimiter=',')
-t_exact = np.linspace(1, 10, 289)
+t_exact = np.linspace(0, 10, 251)
 y_exact = example2_solution(t_exact)
 
 with open('plotly_example2_data.js', 'w') as f:
