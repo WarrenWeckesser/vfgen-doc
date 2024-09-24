@@ -16,7 +16,7 @@ pendulum_demo: $(VFGEN_OUTPUT)
 	make -f Makefile.pendulum_demo
 
 $(VFGEN_OUTPUT): ../example_vf/pendulum.vf
-	vfgen boostodeint:demo=yes ../example_vf/pendulum.vf
+	vfgen boostodeint:system=implicit,demo=yes ../example_vf/pendulum.vf
 
 purge:
 	rm -f $(ALL) *.o
