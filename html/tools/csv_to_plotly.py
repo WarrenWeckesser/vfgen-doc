@@ -40,8 +40,10 @@ for name in selected_headers:
 data = [line.split(',') for line in lines[1:]]
 columns = list(zip(*data))
 
+n = 0
 for k in range(1, len(columns)):
     if headers[k] in selected_column_names:
+        n += 1
         print(f"const {headers[k]} = {{")
         print("  x: ", end="")
         values = ", ".join(columns[0])
@@ -50,7 +52,7 @@ for k in range(1, len(columns)):
         values = ", ".join(columns[k])
         print(f"[{values}],")
         style = styles[(k - 1) % len(styles)]
-        if plot_styles[k - 1] == "scatter":
+        if plot_styles[n - 1] == "scatter":
             print("  mode: 'markers',")
             print("  type: 'scatter'")
         else:
