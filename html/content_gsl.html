@@ -26,7 +26,9 @@ If the option <b>func=yes</b> is given,
 VFGEN also converts any user-defined functions in the vector field file
 into functions in the C file.  The names of the
 functions will be the same as those given in the vector field file,
-with the name of the vector field prepended.
+with the name of the vector field prepended. An additional C function,
+<b>[name]_functions(...)</b>, is generated that computes all the
+defined functions in one call.
 <br />
 <i>Default</i>: <b>func=no</b>
 </td>
