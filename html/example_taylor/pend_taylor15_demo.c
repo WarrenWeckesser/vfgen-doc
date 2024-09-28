@@ -11,10 +11,14 @@
 #include <stdio.h>
 #include "pendulum_taylor15.h"
 
+void print_header()
+{
+    printf("t, theta, v\n");
+}
 
 void print_solution(double t, double x[])
 {
-    printf("%8.5f %15.10f %15.10f\n", t, x[0], x[1]);
+    printf("%8.5f, %15.10f, %15.10f\n", t, x[0], x[1]);
 }
 
 int main(int argc, char *argv[])
@@ -45,6 +49,7 @@ int main(int argc, char *argv[])
     tmax =  1.0;
     numsamples = 101;
 
+    print_header();
     for (i = 0; i < numsamples; ++i) {
         t = tmin + i*(tmax - tmin)/(numsamples - 1);
         pendulum_evaltaylor15(x, t, x0, xderivs);
