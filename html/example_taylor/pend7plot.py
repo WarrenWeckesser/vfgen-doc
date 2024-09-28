@@ -3,7 +3,7 @@ from numpy import loadtxt
 import matplotlib.pyplot as plt
 
 
-t, theta, v = loadtxt('pend7.dat', unpack=True)
+t, theta, v = loadtxt('pend7.csv', unpack=True, skiprows=1, delimiter=',')
 
 plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 

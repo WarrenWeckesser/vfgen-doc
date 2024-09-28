@@ -9,11 +9,11 @@ all: example1 example2
 
 example1: pend7.svg pend_taylor_demo.svg
 
-pend7.svg: pend7plot.py pend7.dat
+pend7.svg: pend7plot.py pend7.csv
 	python pend7plot.py
 
-pend7.dat: pend_main
-	./pend_main > pend7.dat
+pend7.csv: pend_main
+	./pend_main > pend7.csv
 
 pend_main: Makefile_pend_main pend_main.c pendulum_taylor7.c pendulum_taylor7.h
 	make -f Makefile_pend_main
@@ -71,7 +71,7 @@ vdp8compare.svg: vdp8.dat vdpgsl.dat vdp8plot.py
 
 clean:
 	rm -f *.o
-	rm -f pend7.dat pend_main
+	rm -f pend7.csv pend_main
 	rm -f demo3.dat pend_taylor3_demo pendulum_taylor3.c pendulum_taylor3.h
 	rm -f demo7.dat pend_taylor7_demo
 	rm -f demo_gsl.csv
@@ -81,7 +81,7 @@ clean:
 
 purge:
 	rm -f *.o
-	rm -f pend7.svg pend7.dat pend_main pendulum_taylor7.c pendulum_taylor7.h
+	rm -f pend7.svg pend7.csv pend_main pendulum_taylor7.c pendulum_taylor7.h
 	rm -f demo3.dat pend_taylor3_demo pendulum_taylor3.c pendulum_taylor3.h
 	rm -f demo7.dat pend_taylor7_demo pendulum_taylor7.c pendulum_taylor7.h
 	rm -f pend_taylor_demo.svg demo_gsl.csv

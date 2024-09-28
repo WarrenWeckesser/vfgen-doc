@@ -5,15 +5,20 @@
  *  "taylor" mode of VFGEN.  It is a simple ODE solver with a fixed
  *  step size.
  *
- *  Copyright (c) 2006-2014  Warren Weckesser
+ *  Copyright (c) 2006-2024  Warren Weckesser
  */
 
 #include <stdio.h>
 #include "pendulum_taylor7.h"
 
+void print_header()
+{
+    printf("t, theta, v\n");
+}
+
 void print_solution(double t, double x[])
 {
-    printf("%8.5f %15.10f %15.10f\n", t, x[0], x[1]);
+    printf("%8.5f, %15.10f, %15.10f\n", t, x[0], x[1]);
 }
 
 int main(int argc, char *argv[])
@@ -42,6 +47,7 @@ int main(int argc, char *argv[])
     h = 0.05;        /* step size */
     numsteps = 400;
     t = 0.0;
+    print_header();
     print_solution(t, x);
     for (i = 0; i < numsteps; ++i) {
         pendulum_derivs7(xderivs, x, p);
