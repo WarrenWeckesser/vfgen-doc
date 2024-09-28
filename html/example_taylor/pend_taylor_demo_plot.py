@@ -7,10 +7,6 @@ t, theta, v = loadtxt('demo_gsl.csv', unpack=True, skiprows=1, delimiter=',')
 ts, theta3, v3, theta7, v7, theta15, v15 = loadtxt('pend_taylor_samples.csv',
                                                    unpack=True, skiprows=1, delimiter=',')
 
-#t3, theta3, v3 = loadtxt('demo3.csv', unpack=True, skiprows=1, delimiter=',')
-#t7, theta7, v7 = loadtxt('demo7.csv', unpack=True, skiprows=1, delimiter=',')
-#t15, theta15, v15 = loadtxt('demo15.csv', unpack=True, skiprows=1, delimiter=',')
-
 plt.figure(figsize=(7.5, 4)).subplots_adjust(bottom=0.12)
 
 plt.xlabel('t')
