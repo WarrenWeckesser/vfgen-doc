@@ -3,7 +3,7 @@ from numpy import loadtxt
 import matplotlib.pyplot as plt
 
 
-t, theta, v = loadtxt('demo_gsl.dat', unpack=True)
+t, theta, v = loadtxt('demo_gsl.csv', unpack=True, skiprows=1, delimiter=',')
 t3, theta3, v3 = loadtxt('demo3.dat', unpack=True)
 t7, theta7, v7 = loadtxt('demo7.dat', unpack=True)
 t15, theta15, v15 = loadtxt('demo15.dat', unpack=True)
