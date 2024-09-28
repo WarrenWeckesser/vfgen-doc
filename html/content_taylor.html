@@ -126,9 +126,25 @@ A Makefile for the pend_main program is
 The program pend_main uses the function pendulum_taylor7 to implement
 a simple solver for the differential equations.
 Here is a plot of the output of pendmain:
+
 <center>
-<img class="exampleplot" src="example_taylor/pend7.svg">
+<div id="taylor_example1_pend7_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data} from './example_taylor/plotly_pend7_data.js';
+var plotter = document.getElementById('taylor_example1_pend7_plot');
+var layout = {
+     title:'Dampled Pendulum',
+     xaxis: {
+          title: {
+               text: 't'
+          },
+     },
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
 The following plot shows a comparison of the polynomial approximations for orders
 3, 7, and 15 for the pendulum vector field.  The Taylor expansion was found
 for <i>&theta;</i>(0)=1.0 and <i>v</i>(0)=1.5, with parameter values

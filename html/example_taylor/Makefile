@@ -1,16 +1,16 @@
 # This Makefile doesn't regenerate the data files vdpgsl.dat and vdpr5.dat.
 # These were created using GSL and RADAU5.
 
-WEBFILES = pendulum_taylor7.c pendulum_taylor7.h pend7.svg pend_taylor_demo.svg \
+WEBFILES = pendulum_taylor7.c pendulum_taylor7.h plotly_pend7_data.js pend_taylor_demo.svg \
            vdp8compare.svg
 
 
 all: example1 example2
 
-example1: pend7.svg pend_taylor_demo.svg
+example1: plotly_pend7_data.js pend_taylor_demo.svg
 
-pend7.svg: pend7plot.py pend7.csv
-	python pend7plot.py
+plotly_pend7_data.js: pend7.csv
+	python ../tools/csv_to_plotly.py pend7.csv > plotly_pend7_data.js 
 
 pend7.csv: pend_main
 	./pend_main > pend7.csv
@@ -81,7 +81,8 @@ clean:
 
 purge:
 	rm -f *.o
-	rm -f pend7.svg pend7.csv pend_main pendulum_taylor7.c pendulum_taylor7.h
+	rm -f plotly_pend7_data.js
+	rm -f pend7.csv pend_main pendulum_taylor7.c pendulum_taylor7.h
 	rm -f demo3.dat pend_taylor3_demo pendulum_taylor3.c pendulum_taylor3.h
 	rm -f demo7.dat pend_taylor7_demo pendulum_taylor7.c pendulum_taylor7.h
 	rm -f pend_taylor_demo.svg demo_gsl.csv
