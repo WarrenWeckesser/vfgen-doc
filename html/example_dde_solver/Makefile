@@ -1,14 +1,14 @@
 FC = gfortran
 
 WEBFILES = MackeyGlass.f90 MackeyGlass_demo.f90 plotly_example1_data.js \
-           sdd.f90 sdd_demo.f90 \
-		   sddfn.f90 sddfn_demo.f90
+           sdd.f90 sdd_demo.f90 plotly_example2_data.js \
+		   sddfn.f90 sddfn_demo.f90 plotly_example3_data.js
 
 MG_VFGEN_FILES = MackeyGlass.f90 MackeyGlass_demo.f90
 SDD_VFGEN_FILES = sdd.f90 sdd_demo.f90
 SDDFN_VFGEN_FILES = sddfn.f90 sddfn_demo.f90
 
-all: plotly_example1_data.js plotly_example1_data.js plotly_example2_data.js
+all: plotly_example1_data.js plotly_example2_data.js plotly_example3_data.js
 
 #
 # Example 1
@@ -18,13 +18,10 @@ plotly_example1_data.js: mg.csv
 	python ../tools/csv_to_plotly.py mg.csv > plotly_example1_data.js
 
 mg.csv: MackeyGlass_demo
-	./MackeyGlass_demo > mg.csv
+	./MackeyGlass_demo stoptime 500.0 > mg.csv
 
-MackeyGlass_demo_stoptime500.f90: MackeyGlass_demo.f90
-	sed 's/stoptime = 10\.0/stoptime = 500.0/' MackeyGlass_demo.f90 > MackeyGlass_demo_stoptime500.f90
-
-MackeyGlass_demo: MackeyGlass_demo_stoptime500.f90 MackeyGlass.f90 dde_solver_m.o
-	$(FC) MackeyGlass.f90 MackeyGlass_demo_stoptime500.f90  dde_solver_m.o -o MackeyGlass_demo
+MackeyGlass_demo: MackeyGlass_demo.f90 MackeyGlass.f90 dde_solver_m.o
+	$(FC) MackeyGlass.f90 MackeyGlass_demo.f90  dde_solver_m.o -o MackeyGlass_demo
 
 $(MG_VFGEN_FILES): ../example_vf/MackeyGlass.vf
 	vfgen dde_solver:demo=yes ../example_vf/MackeyGlass.vf
@@ -53,16 +50,10 @@ $(SDD_VFGEN_FILES): ../example_vf/sdd.vf
 #
 
 sddfn.csv: sddfn_demo
-	./sddfn_demo > sddfn.csv
+	./sddfn_demo stoptime 2.0 relerr 1d-9 abserr 1d-11 > sddfn.csv
 
-sddfn_demo: sddfn_demo_stoptime2.f90 sddfn.f90 dde_solver_m.o
-	$(FC) sddfn.f90 sddfn_demo_stoptime2.f90 dde_solver_m.o -o sddfn_demo
-
-sddfn_demo_stoptime2.f90: sddfn_demo.f90
-	sed -e 's/stoptime = 10\.0/stoptime = 2.0/' \
-        -e 's/relerr = 1D-7/relerr = 1D-9/' \
-        -e 's/abserr = 1D-9/abserr = 1D-11/' \
-        sddfn_demo.f90 > sddfn_demo_stoptime2.f90
+sddfn_demo: sddfn_demo.f90 sddfn.f90 dde_solver_m.o
+	$(FC) sddfn.f90 sddfn_demo.f90 dde_solver_m.o -o sddfn_demo
 
 $(SDDFN_VFGEN_FILES): ../example_vf/sddfn.vf
 	vfgen dde_solver:demo=yes ../example_vf/sddfn.vf
