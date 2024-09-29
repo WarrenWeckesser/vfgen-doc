@@ -143,7 +143,6 @@ guide_submenu = [
     ['menu_auto',        f'{c} AUTO',               'content_auto.html'],
     ['menu_boostodeint', f'{c} Boost Odeint',       'content_boostodeint.html'],
     ['menu_check',       f'{c} Check',              'content_check.html'],
-    ['menu_cvode',       f'{c} CVODE',              'content_cvode.html'],
     ['menu_cvode7',      f'{c} CVODE7',             'content_cvode7.html'],
     ['menu_dde23',       f'{c} DDE23',              'content_dde23.html'],
     ['menu_ddebiftool',  f'{c} DDE-BIFTOOL',        'content_ddebiftool.html'],
