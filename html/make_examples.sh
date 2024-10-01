@@ -27,7 +27,6 @@
 #     dde23 [1]
 #     ddebiftool [1]
 #     delay2ode
-#     dstool
 #     evf
 #     gsl
 #     help (nothing to do)

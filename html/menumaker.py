@@ -148,7 +148,6 @@ guide_submenu = [
     ['menu_ddebiftool',  f'{c} DDE-BIFTOOL',        'content_ddebiftool.html'],
     ['menu_dde_solver',  f'{c} DDE_SOLVER',         'content_dde_solver.html'],
     ['menu_delay2ode',   f'{c} Delay2ODE',          'content_delay2ode.html'],
-    ['menu_dstool',      f'{c} DSTool',             'content_dstool.html'],
     ['menu_evf',         f'{c} EVF',                'content_evf.html'],
     ['menu_gsl',         f'{c} GSL',                'content_gsl.html'],
     ['menu_help',        f'{c} Help',               'content_help.html'],
