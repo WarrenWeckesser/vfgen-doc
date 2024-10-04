@@ -18,14 +18,14 @@ pend7.csv: pend_main
 pend_main: Makefile_pend_main pend_main.c pendulum_taylor7.c pendulum_taylor7.h
 	make -f Makefile_pend_main
 
-demo_gsl.csv: pendulum_solve
-	./pendulum_solve b=0.25 L=1 m=1 theta=1 v=1.5 abserr=1e-12 relerr=1e-10 > demo_gsl.csv
+pend_taylor_demo_gsl.csv: pendulum_solve
+	./pendulum_solve b=0.25 L=1 m=1 theta=1 v=1.5 abserr=1e-12 relerr=1e-10 > pend_taylor_demo_gsl.csv
 
 pendulum_solve: ../example_vf/pendulum.vf
 	vfgen gsl:demo=yes ../example_vf/pendulum.vf
 	make -f Makefile-pendulum
 
-pend_taylor_demo.svg: pend_taylor_demo_plot.py pend_taylor_samples.csv demo_gsl.csv
+pend_taylor_demo.svg: pend_taylor_demo_plot.py pend_taylor_samples.csv pend_taylor_demo_gsl.csv
 	python pend_taylor_demo_plot.py
 
 pend_taylor_samples.csv: pend_taylor_samples_demo
@@ -56,7 +56,7 @@ vdp8compare.svg: vdp8.dat vdpgsl.dat vdp8plot.py
 clean:
 	rm -f *.o
 	rm -f pend7.csv pend_main
-	rm -f demo_gsl.csv
+	rm -f pend_taylor_demo_gsl.csv
 	rm -f Makefile-pendulum pendulum_solve pendulum_solve.c pendulum_gvf.c pendulum_gvf.h
 	rm -f vdp8.dat vanderpol_adaptive8 vanderpol_taylor8.c vanderpol_taylor8.h
 
@@ -66,6 +66,6 @@ purge:
 	rm -f pend7.csv pend_main pendulum_taylor7.c pendulum_taylor7.h
 	rm -f pendulum_taylor15.c pendulum_taylor15.h
 	rm -f pend_taylor_samples_demo pend_taylor_samples.csv
-	rm -f pend_taylor_demo.svg demo_gsl.csv
+	rm -f pend_taylor_demo.svg pend_taylor_demo_gsl.csv
 	rm -f Makefile-pendulum pendulum_solve pendulum_solve.c pendulum_gvf.c pendulum_gvf.h
 	rm -f vdp8compare.svg vdp8.dat vanderpol_adaptive8 vanderpol_taylor8.c vanderpol_taylor8.h
