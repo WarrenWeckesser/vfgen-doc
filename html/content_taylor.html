@@ -135,7 +135,7 @@ Here is a plot of the output of pendmain:
 import {data} from './example_taylor/plotly_pend7_data.js';
 var plotter = document.getElementById('taylor_example1_pend7_plot');
 var layout = {
-     title:'Dampled Pendulum',
+     title:'Damped Pendulum',
      xaxis: {
           title: {
                text: 't'
@@ -152,9 +152,33 @@ for <i>&theta;</i>(0)=1.0 and <i>v</i>(0)=1.5, with parameter values
 Also shown is the solution generated with the
 <a href="menu_gsl.html">GSL ODE solver</a>
 (with abserr=10<sup>-12</sup> and relerr=10<sup>-10</sup>).
+
 <center>
-<img class="exampleplot" src="example_taylor/pend_taylor_demo.svg">
+<div id="pend_taylor_samples_plot" style="width:600px;height:350px;"></div>
 </center>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script type="module">
+import {data as data1} from './example_taylor/pend_taylor_samples_data.js';
+import {data as data2} from './example_taylor/pend_taylor_demo_gsl_data.js';
+var data = data1.concat(data2)
+var plotter = document.getElementById('pend_taylor_samples_plot');
+var layout = {
+     title:'Taylor approximations of different orders',
+     xaxis: {
+          title: {
+               text: 't'
+          },
+     },
+     yaxis: {
+          title: {
+               text: 'theta'
+          }
+     }
+};
+Plotly.newPlot(plotter, data, layout);
+</script>
+
+
 <h4>Example 2</h4>
 <p>
 A vector field file for the van der Pol equation
