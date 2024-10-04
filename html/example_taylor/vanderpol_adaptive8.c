@@ -5,7 +5,7 @@
  *  "taylor" mode of VFGEN.
  *
  *
- *  Copyright (c) 2006, 2008 Warren Weckesser, https://warrenweckesser.github.io
+ *  Copyright (c) 2006-2024 Warren Weckesser, https://warrenweckesser.github.io
  *  
  */
 
@@ -15,7 +15,7 @@
 
 void print_solution(double t, double x[])
 {
-    printf("%12.8f %18.10g %18.10g\n",t,x[0],x[1]);
+    printf("%12.8f %18.10g %18.10g\n", t, x[0], x[1]);
 }
 
 int main(int argc, char *argv[])
@@ -53,13 +53,13 @@ int main(int argc, char *argv[])
 
     pd1 = xd1;
     pd2 = xd2;
-    vanderpol_derivs8(pd1,x,p);
-    print_solution(t,x);
+    vanderpol_derivs8(pd1, x, p);
+    print_solution(t, x);
     while (t < tstop) {
-        vanderpol_evaltaylor8(xnew,h,x,pd1);
-        vanderpol_derivs8(pd2,xnew,p);
-        vanderpol_evaltaylor8(xback,-h,xnew,pd2);
-        double e = sqrt(pow(x[0]-xback[0],2)+pow(x[1]-xback[1],2));
+        vanderpol_evaltaylor8(xnew, h, x, pd1);
+        vanderpol_derivs8(pd2, xnew, p);
+        vanderpol_evaltaylor8(xback, -h, xnew, pd2);
+        double e = sqrt(pow(x[0]-xback[0], 2) + pow(x[1]-xback[1], 2));
         if (e > tol) {
             if  (h > hmin) {
                 h = (2.0/3.0)*h;
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
                 // fprintf(stderr,"t=%f  decreasing step size to %f\n",t,h);
             }
             else {
-                fprintf(stderr,"Minimum step size reached without achieving tolerance.\n");
+                fprintf(stderr, "Minimum step size reached without achieving tolerance.\n");
                 break;
             }
         }
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
             pd1 = pd2;
             pd2 = tmp;
             t = t + h;
-            print_solution(t,x);
+            print_solution(t, x);
             if (e < mintol && h < hmax) {
                 h = 1.5*h;
                 if (h > hmax) {
