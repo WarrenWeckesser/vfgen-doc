@@ -27,25 +27,18 @@ plot_pendulumv_solution.svg: plot_pendulumv_solution.R $(VFGEN_EXAMPLE1_OUTPUT)
 # Example 2
 #
 
-example2: $(VFGEN_EXAMPLE2_OUTPUT) MackeyGlass_demo_edit.R MackeyGlass_demo.svg
-
-MackeyGlass_demo_edit.R: MackeyGlass_demo.R
-	sed 's/times = seq(0, 10, by = 0.02)/times = seq(0, 500, by = 0.25)/' \
-        MackeyGlass_demo.R > MackeyGlass_demo_edit.R
+example2: $(VFGEN_EXAMPLE2_OUTPUT) MackeyGlass_demo.svg
 
 $(VFGEN_EXAMPLE2_OUTPUT): ../example_vf/MackeyGlass.vf
 	vfgen r:demo=yes ../example_vf/MackeyGlass.vf
 
-MackeyGlass_demo.svg: MackeyGlass_demo_edit.R run_MackeyGlass_demo_edit.R
-	R --vanilla --slave -f run_MackeyGlass_demo_edit.R
+MackeyGlass_demo.svg: MackeyGlass_demo.R
+	R --vanilla --slave -f run_MackeyGlass_demo.R --args stoptime 500
 
 #
 # Clean up
 #
 
-clean:
-	rm -f MackeyGlass_demo_edit.R
-
 purge:
-	rm -f $(VFGEN_EXAMPLE1_OUTPUT) $(VFGEN_EXAMPLE2_OUTPUT) MackeyGlass_demo_edit.R \
+	rm -f $(VFGEN_EXAMPLE1_OUTPUT) $(VFGEN_EXAMPLE2_OUTPUT) \
 	      pendulumv_demo.svg plot_pendulumv_solution.svg MackeyGlass_demo.svg
