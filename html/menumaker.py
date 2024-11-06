@@ -159,7 +159,6 @@ guide_submenu = [
     ['menu_matcont',     f'{c} MATCONT',            'content_matcont.html'],
     ['menu_matlab',      f'{c} MATLAB',             'content_matlab.html'],
     ['menu_octave',      f'{c} Octave',             'content_octave.html'],
-    ['menu_pydstool',    f'{c} PyDSTool',           'content_pydstool.html'],
     ['menu_pygsl',       f'{c} PyGSL',              'content_pygsl.html'],
     ['menu_r',           f'{c} R',                  'content_r.html'],
     ['menu_radau5',      f'{c} RADAU5',             'content_radau5.html'],

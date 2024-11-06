@@ -36,7 +36,6 @@
 #     matcont [1]
 #     matlab [1]
 #     octave
-#     pydstool
 #     pygsl
 #     r [4]
 #     radau5
