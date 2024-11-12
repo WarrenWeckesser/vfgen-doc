@@ -1,9 +1,6 @@
-# This Makefile doesn't regenerate the data files vdpgsl.dat and vdpr5.dat.
-# These were created using GSL and RADAU5.
-
 WEBFILES = pendulum_taylor7.c pendulum_taylor7.h plotly_pend7_data.js \
-           pend_taylor_samples_data.js pend_taylor_demo_gsl_data.js \
-           vdp8compare.svg
+           pend_taylor_samples_data.js pend_taylor_demo_gsl_data.js   \
+           plotly_vdp8_data.js
 
 
 all: example1 example2
@@ -45,15 +42,15 @@ pendulum_taylor15.c pendulum_taylor15.h: ../example_vf/pendulum.vf
 	vfgen taylor:order=15 ../example_vf/pendulum.vf
 
 
-example2: vdp8compare.svg
+example2: plotly_vdp8_data.js
 
-vdp8.dat: ../example_vf/vanderpol.vf Makefile-vanderpol_adaptive8
+vdp8.csv: ../example_vf/vanderpol.vf Makefile-vanderpol_adaptive8
 	vfgen taylor:order=8 ../example_vf/vanderpol.vf
 	make -f Makefile-vanderpol_adaptive8
-	./vanderpol_adaptive8 > vdp8.dat
+	./vanderpol_adaptive8 > vdp8.csv
 
-vdp8compare.svg: vdp8.dat vdpgsl.dat vdp8plot.py
-	python vdp8plot.py
+plotly_vdp8_data.js: vdp8.csv
+	python ../tools/csv_to_plotly.py vdp8.csv > plotly_vdp8_data.js
 
 # TODO: Fix the clean target.  It clean up anything that is not
 # needed for the web page.
@@ -62,7 +59,7 @@ clean:
 	rm -f pend7.csv pend_main
 	rm -f pend_taylor_demo_gsl.csv
 	rm -f Makefile-pendulum pendulum_solve pendulum_solve.c pendulum_gvf.c pendulum_gvf.h
-	rm -f vdp8.dat vanderpol_adaptive8 vanderpol_taylor8.c vanderpol_taylor8.h
+	rm -f vdp8.csv vanderpol_adaptive8 vanderpol_taylor8.c vanderpol_taylor8.h
 
 purge:
 	rm -f *.o
@@ -73,4 +70,4 @@ purge:
 	rm -f pend_taylor_demo_gsl.csv
 	rm -f pend_taylor_demo_gsl_data.js pend_taylor_samples_data.js
 	rm -f Makefile-pendulum pendulum_solve pendulum_solve.c pendulum_gvf.c pendulum_gvf.h
-	rm -f vdp8compare.svg vdp8.dat vanderpol_adaptive8 vanderpol_taylor8.c vanderpol_taylor8.h
+	rm -f plotly_vdp8_data.js vdp8.csv vanderpol_adaptive8 vanderpol_taylor8.c vanderpol_taylor8.h

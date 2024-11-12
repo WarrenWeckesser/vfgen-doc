@@ -15,7 +15,12 @@
 
 void print_solution(double t, double x[])
 {
-    printf("%12.8f %18.10g %18.10g\n", t, x[0], x[1]);
+    printf("%12.8f, %18.10g, %18.10g\n", t, x[0], x[1]);
+}
+
+void print_header()
+{
+    printf("%12s, %18s, %18s\n", "t", "x", "y");
 }
 
 int main(int argc, char *argv[])
@@ -54,6 +59,7 @@ int main(int argc, char *argv[])
     pd1 = xd1;
     pd2 = xd2;
     vanderpol_derivs8(pd1, x, p);
+    print_header();
     print_solution(t, x);
     while (t < tstop) {
         vanderpol_evaltaylor8(xnew, h, x, pd1);
