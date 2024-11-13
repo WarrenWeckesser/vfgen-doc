@@ -21,8 +21,8 @@ k = 0
 while k < len(data) and data[k]['Type name'] != 'HB':
     k = k + 1
 if k == len(data):
-    print "Hopf bifurcation not found."
-    exit
+    print("Hopf bifurcation not found.")
+    exit()
 
 hopf_label = data[k]['Label']
 
@@ -50,5 +50,3 @@ ch("NMX", 1000)
 run(s="vanderpola_bif")
 ap("vanderpola_bif")
 clean()
-
-
