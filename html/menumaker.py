@@ -169,7 +169,7 @@ guide_submenu = [
 ]
 
 m = [['index', 'Home', 'content_home.html'],
-     ['menu_download', 'Download', 'content_download.html'],
+     ['menu_install', 'Install', 'content_install.html'],
      ['menu_guide', "User's Guide", 'content_guide.html', guide_submenu]]
 
 # test_id_assignment(m, [0])
