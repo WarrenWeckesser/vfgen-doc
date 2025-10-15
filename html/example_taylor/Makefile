@@ -2,19 +2,18 @@ WEBFILES = pendulum_taylor7.c pendulum_taylor7.h plotly_pend7_data.js \
            pend_taylor_samples_data.js pend_taylor_demo_gsl_data.js   \
            plotly_vdp8_data.js
 
-
 all: example1 example2
 
 example1: plotly_pend7_data.js pend_taylor_samples_data.js pend_taylor_demo_gsl_data.js
 
 pend_taylor_samples_data.js: pend_taylor_samples.csv
-	python ../tools/csv_to_plotly.py pend_taylor_samples.csv "theta3=Order 3" "theta7=Order 7" "theta15=Order 15" > pend_taylor_samples_data.js
+	$(PY) ../tools/csv_to_plotly.py pend_taylor_samples.csv "theta3=Order 3" "theta7=Order 7" "theta15=Order 15" > pend_taylor_samples_data.js
 
 pend_taylor_demo_gsl_data.js: pend_taylor_demo_gsl.csv
-	python ../tools/csv_to_plotly.py pend_taylor_demo_gsl.csv theta=GSL > pend_taylor_demo_gsl_data.js
+	$(PY) ../tools/csv_to_plotly.py pend_taylor_demo_gsl.csv theta=GSL > pend_taylor_demo_gsl_data.js
 
 plotly_pend7_data.js: pend7.csv
-	python ../tools/csv_to_plotly.py pend7.csv > plotly_pend7_data.js 
+	$(PY) ../tools/csv_to_plotly.py pend7.csv > plotly_pend7_data.js
 
 pend7.csv: pend_main
 	./pend_main > pend7.csv
@@ -50,7 +49,7 @@ vdp8.csv: ../example_vf/vanderpol.vf Makefile-vanderpol_adaptive8
 	./vanderpol_adaptive8 > vdp8.csv
 
 plotly_vdp8_data.js: vdp8.csv
-	python ../tools/csv_to_plotly.py vdp8.csv > plotly_vdp8_data.js
+	$(PY) ../tools/csv_to_plotly.py vdp8.csv > plotly_vdp8_data.js
 
 # TODO: Fix the clean target.  It clean up anything that is not
 # needed for the web page.
